@@ -1,0 +1,426 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ action }} Cerita - Panel Admin | Cerita Warisan{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-section {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        margin-bottom: 28px;
+    }
+    .form-section-header {
+        padding: 20px 28px;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .form-section-header .section-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: rgba(26,60,52,0.08);
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+    .form-section-body {
+        padding: 28px;
+    }
+    .field-group {
+        margin-bottom: 24px;
+    }
+    .field-group:last-child {
+        margin-bottom: 0;
+    }
+    .field-label {
+        display: block;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        opacity: 0.5;
+        margin-bottom: 8px;
+    }
+    .field-label span.required {
+        color: #e74c3c;
+        margin-left: 3px;
+    }
+    .field-help {
+        font-size: 0.76rem;
+        opacity: 0.4;
+        margin-top: 6px;
+    }
+    .form-input {
+        width: 100%;
+        padding: 13px 16px;
+        border: 1.5px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--bg-color);
+        color: var(--text-color);
+        font-size: 0.95rem;
+        font-family: 'Inter', sans-serif;
+        transition: border-color 0.25s, box-shadow 0.25s;
+        box-sizing: border-box;
+    }
+    .form-input:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 3px rgba(197,160,89,0.12);
+    }
+    .form-input::placeholder { opacity: 0.35; }
+    textarea.form-input { resize: vertical; line-height: 1.7; }
+    select.form-input {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+        padding-right: 40px;
+    }
+    .form-input.error-field { border-color: #e74c3c; }
+    .error-text {
+        color: #e74c3c;
+        font-size: 0.78rem;
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* Cover preview */
+    .cover-upload-area {
+        border: 2px dashed var(--border-color);
+        border-radius: 16px;
+        padding: 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s;
+        position: relative;
+        background: var(--bg-color);
+    }
+    .cover-upload-area:hover {
+        border-color: var(--secondary-color);
+        background: rgba(197,160,89,0.04);
+    }
+    .cover-upload-area input[type="file"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+    }
+    #cover-preview {
+        display: none;
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-top: 16px;
+    }
+
+    /* Two-column grid for selects */
+    .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    @media (max-width: 600px) {
+        .field-row { grid-template-columns: 1fr; }
+        .form-section-body { padding: 20px; }
+    }
+
+    /* Slug preview */
+    .slug-preview {
+        font-size: 0.78rem;
+        opacity: 0.45;
+        margin-top: 6px;
+    }
+    .slug-preview span {
+        color: var(--secondary-color);
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="max-width: 860px; margin: 0 auto; padding-bottom: 80px;">
+
+    {# ── Header ── #}
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px; flex-wrap: wrap; gap: 16px;">
+        <div>
+            <a href="{% url 'folklore:admin_dashboard' %}" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--secondary-color); text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+                <i class="fas fa-arrow-left"></i> Kembali ke Panel
+            </a>
+            <h1 style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-family: var(--font-serif);">
+                {% if action == 'Edit' %}
+                    Sunting Cerita
+                {% else %}
+                    <i class="fas fa-plus-circle" style="color: var(--secondary-color); font-size: 0.8em; margin-right: 10px;"></i>Tambah Cerita Baru
+                {% endif %}
+            </h1>
+            {% if action == 'Edit' and story %}
+            <p style="opacity: 0.5; font-size: 0.9rem; margin-top: 5px;">
+                Memperbarui: <em>{{ story.title }}</em>
+            </p>
+            {% endif %}
+        </div>
+
+        {% if action == 'Edit' and story %}
+        <a href="{% url 'folklore:story_detail' story.slug %}" class="btn-premium" style="background: transparent; color: var(--text-color); border: 1px solid var(--border-color);" target="_blank">
+            <i class="fas fa-eye"></i> Pratinjau
+        </a>
+        {% endif %}
+    </div>
+
+    <form method="post" enctype="multipart/form-data" id="storyForm" novalidate>
+        {% csrf_token %}
+
+        {# ── Bagian 1: Informasi Utama ── #}
+        <div class="form-section">
+            <div class="form-section-header">
+                <div class="section-icon"><i class="fas fa-pen-fancy"></i></div>
+                <div>
+                    <div style="font-weight: 700; font-size: 1rem;">Informasi Utama</div>
+                    <div style="font-size: 0.78rem; opacity: 0.4;">Judul, slug, dan ringkasan cerita</div>
+                </div>
+            </div>
+            <div class="form-section-body">
+
+                <div class="field-group">
+                    <label class="field-label" for="id_title">Judul Cerita <span class="required">*</span></label>
+                    <input type="text" name="title" id="id_title" class="form-input {% if form.title.errors %}error-field{% endif %}"
+                           placeholder="Judul cerita..." value="{{ form.title.value|default:'' }}" required>
+                    {% if form.title.errors %}
+                    <div class="error-text"><i class="fas fa-exclamation-circle"></i>{{ form.title.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="id_slug">Slug URL <span style="opacity:0.5; font-size:0.85em; text-transform: none; letter-spacing: 0;">(opsional)</span></label>
+                    <input type="text" name="slug" id="id_slug" class="form-input {% if form.slug.errors %}error-field{% endif %}"
+                           placeholder="otomatis-dari-judul" value="{{ form.slug.value|default:'' }}">
+                    <div class="slug-preview">URL: <span id="slug-display">{{ form.slug.value|default:'akan-dibuat-otomatis' }}</span></div>
+                    {% if form.slug.errors %}
+                    <div class="error-text"><i class="fas fa-exclamation-circle"></i>{{ form.slug.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="id_summary">Ringkasan <span style="opacity:0.5; font-size:0.85em; text-transform: none; letter-spacing: 0;">(tampil di kartu)</span></label>
+                    <textarea name="summary" id="id_summary" class="form-input" rows="3"
+                              placeholder="Deskripsi singkat yang menarik pembaca...">{{ form.summary.value|default:'' }}</textarea>
+                </div>
+
+            </div>
+        </div>
+
+        {# ── Bagian 2: Isi Cerita ── #}
+        <div class="form-section">
+            <div class="form-section-header">
+                <div class="section-icon"><i class="fas fa-scroll"></i></div>
+                <div>
+                    <div style="font-weight: 700; font-size: 1rem;">Isi Cerita</div>
+                    <div style="font-size: 0.78rem; opacity: 0.4;">Konten lengkap cerita rakyat</div>
+                </div>
+            </div>
+            <div class="form-section-body">
+                <div class="field-group">
+                    <label class="field-label" for="id_content">Konten Lengkap <span class="required">*</span></label>
+                    <textarea name="content" id="id_content" class="form-input {% if form.content.errors %}error-field{% endif %}"
+                              rows="16" placeholder="Tulis isi cerita di sini..." required>{{ form.content.value|default:'' }}</textarea>
+                    <div class="field-help">Gunakan enter untuk paragraf baru.</div>
+                    {% if form.content.errors %}
+                    <div class="error-text"><i class="fas fa-exclamation-circle"></i>{{ form.content.errors.0 }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {# ── Bagian 3: Metadata ── #}
+        <div class="form-section">
+            <div class="form-section-header">
+                <div class="section-icon"><i class="fas fa-tags"></i></div>
+                <div>
+                    <div style="font-weight: 700; font-size: 1rem;">Metadata & Klasifikasi</div>
+                    <div style="font-size: 0.78rem; opacity: 0.4;">Kategori, daerah asal, dan tokoh</div>
+                </div>
+            </div>
+            <div class="form-section-body">
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <label class="field-label" for="id_category">Kategori <span class="required">*</span></label>
+                        <select name="category" id="id_category" class="form-input {% if form.category.errors %}error-field{% endif %}" required>
+                            <option value="">— Pilih Kategori —</option>
+                            {% for cat in form.category.field.queryset %}
+                            <option value="{{ cat.pk }}" {% if form.category.value|stringformat:"s" == cat.pk|stringformat:"s" %}selected{% endif %}>{{ cat.name }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if form.category.errors %}
+                        <div class="error-text"><i class="fas fa-exclamation-circle"></i>{{ form.category.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="id_region">Daerah Asal <span class="required">*</span></label>
+                        <select name="region" id="id_region" class="form-input {% if form.region.errors %}error-field{% endif %}" required>
+                            <option value="">— Pilih Daerah —</option>
+                            {% for reg in form.region.field.queryset %}
+                            <option value="{{ reg.pk }}" {% if form.region.value|stringformat:"s" == reg.pk|stringformat:"s" %}selected{% endif %}>{{ reg.name }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if form.region.errors %}
+                        <div class="error-text"><i class="fas fa-exclamation-circle"></i>{{ form.region.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="id_characters">Tokoh <span class="required">*</span></label>
+                    <input type="text" name="characters" id="id_characters" class="form-input {% if form.characters.errors %}error-field{% endif %}"
+                           placeholder="Contoh: Sangkuriang, Dayang Sumbi, Tumang" value="{{ form.characters.value|default:'' }}" required>
+                    <div class="field-help">Pisahkan nama tokoh dengan koma.</div>
+                    {% if form.characters.errors %}
+                    <div class="error-text"><i class="fas fa-exclamation-circle"></i>{{ form.characters.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+        {# ── Bagian 4: Gambar Cover ── #}
+        <div class="form-section">
+            <div class="form-section-header">
+                <div class="section-icon"><i class="fas fa-image"></i></div>
+                <div>
+                    <div style="font-weight: 700; font-size: 1rem;">Gambar Cover</div>
+                    <div style="font-size: 0.78rem; opacity: 0.4;">Opsional — JPG, PNG, WebP</div>
+                </div>
+            </div>
+            <div class="form-section-body">
+                <div class="cover-upload-area" id="uploadArea">
+                    <input type="file" name="cover_image" id="id_cover_image" accept="image/*" onchange="previewCover(this)">
+                    <div id="upload-placeholder">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2.5rem; opacity: 0.2; margin-bottom: 14px; display: block;"></i>
+                        <div style="font-weight: 600; margin-bottom: 5px;">Klik atau seret gambar ke sini</div>
+                        <div style="font-size: 0.8rem; opacity: 0.4;">Maksimal 5 MB · JPG, PNG, WebP</div>
+                    </div>
+                    {% if action == 'Edit' and story.cover_image %}
+                    <div id="current-cover" style="margin-top: 12px;">
+                        <div style="font-size: 0.75rem; opacity: 0.4; margin-bottom: 8px;">Cover saat ini:</div>
+                        <img src="{{ story.cover_image.url }}" style="width: 100%; max-height: 180px; object-fit: cover; border-radius: 10px;">
+                    </div>
+                    {% endif %}
+                </div>
+                <img id="cover-preview" src="" alt="Preview cover">
+            </div>
+        </div>
+
+        {# ── Action Buttons ── #}
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <a href="{% url 'folklore:admin_dashboard' %}" style="color: var(--text-color); opacity: 0.5; text-decoration: none; font-size: 0.9rem;">
+                <i class="fas fa-times" style="margin-right: 6px;"></i>Batal
+            </a>
+            <div style="display: flex; gap: 12px;">
+                <button type="submit" name="preview" class="btn-premium" style="background: transparent; color: var(--text-color); border: 1px solid var(--border-color);">
+                    <i class="fas fa-save"></i> Simpan Draft
+                </button>
+                <button type="submit" class="btn-premium">
+                    <i class="fas fa-check"></i>
+                    {% if action == 'Edit' %}Simpan Perubahan{% else %}Terbitkan Cerita{% endif %}
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Auto-generate slug from title
+    const titleInput = document.getElementById('id_title');
+    const slugInput = document.getElementById('id_slug');
+    const slugDisplay = document.getElementById('slug-display');
+
+    function slugify(text) {
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]+/g, '')
+            .replace(/\-\-+/g, '-')
+            .replace(/^-+/, '')
+            .replace(/-+$/, '');
+    }
+
+    titleInput.addEventListener('input', function() {
+        if (!slugInput.value || slugInput.dataset.autoMode === 'true') {
+            const generated = slugify(this.value);
+            slugInput.value = generated;
+            slugInput.dataset.autoMode = 'true';
+            slugDisplay.textContent = generated || 'akan-dibuat-otomatis';
+        }
+    });
+
+    slugInput.addEventListener('input', function() {
+        slugInput.dataset.autoMode = 'false';
+        slugDisplay.textContent = this.value || 'akan-dibuat-otomatis';
+    });
+
+    // Cover image preview
+    function previewCover(input) {
+        const preview = document.getElementById('cover-preview');
+        const placeholder = document.getElementById('upload-placeholder');
+        const currentCover = document.getElementById('current-cover');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                placeholder.style.display = 'none';
+                if (currentCover) currentCover.style.display = 'none';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // Drag & drop highlight
+    const uploadArea = document.getElementById('uploadArea');
+    uploadArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.style.borderColor = 'var(--secondary-color)';
+        this.style.background = 'rgba(197,160,89,0.06)';
+    });
+    uploadArea.addEventListener('dragleave', function() {
+        this.style.borderColor = '';
+        this.style.background = '';
+    });
+    uploadArea.addEventListener('drop', function() {
+        this.style.borderColor = '';
+        this.style.background = '';
+    });
+
+    // Character count for content
+    const contentArea = document.getElementById('id_content');
+    const counter = document.createElement('div');
+    counter.className = 'field-help';
+    counter.style.textAlign = 'right';
+    contentArea.parentNode.appendChild(counter);
+
+    function updateCount() {
+        const words = contentArea.value.trim().split(/\s+/).filter(Boolean).length;
+        const chars = contentArea.value.length;
+        counter.textContent = words + ' kata · ' + chars + ' karakter';
+    }
+    contentArea.addEventListener('input', updateCount);
+    updateCount();
+</script>
+{% endblock %}

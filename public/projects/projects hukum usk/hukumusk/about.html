@@ -1,0 +1,403 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="description" content="Tentang DPM FH USK – Sejarah, visi, misi, dan nilai-nilai Dewan Perwakilan Mahasiswa Fakultas Hukum Universitas Syiah Kuala."&gt;
+  &lt;title&gt;Tentang Kami – DPM FH USK&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+  &lt;!-- Lucide Icons --&gt;
+  &lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;
+  &lt;style&gt;
+    .about-intro { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
+    .about-img { border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 4/3; background: linear-gradient(135deg, var(--maroon-dark), var(--maroon)); display: flex; align-items: center; justify-content: center; font-size: 5rem; color: rgba(255,255,255,0.15); }
+    .function-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
+    .function-num { width: 32px; height: 32px; border-radius: 50%; background: var(--maroon); color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .function-title { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 0.2rem; }
+    .function-desc  { font-size: 0.85rem; color: var(--text-gray); }
+
+    /* Vision Mission */
+    .vm-section { background: var(--bg-section); }
+
+    /* Leadership */
+    .leader-section { background: var(--bg-white); }
+    .leader-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .leader-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--maroon-dark);
+      transition: var(--transition);
+    }
+    .leader-card:hover .leader-card-img { transform: scale(1.04); }
+    .leader-card-img {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; color: rgba(255,255,255,0.12);
+      transition: var(--transition);
+    }
+    .leader-card-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(74,14,31,0.97) 0%, rgba(74,14,31,0.5) 50%, transparent 100%);
+      padding: 2.5rem 1rem 1rem;
+    }
+    .leader-card-overlay .role {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.25rem; display: block;
+    }
+    .leader-card-overlay .name {
+      font-family: var(--font-serif); font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 700; color: #fff; line-height: 1.2;
+    }
+    .leader-card-overlay .dept {
+      font-size: 0.72rem; color: rgba(255,255,255,0.6); margin-top: 0.15rem;
+    }
+
+    /* Roadmap */
+    .roadmap-section { background: var(--bg-section); }
+    .roadmap-inner { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+
+    /* CTA Banner */
+    .cta-section {
+      background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 100%);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .cta-section h2 { color: #fff; margin-bottom: 1rem; }
+    .cta-section p { color: rgba(255,255,255,0.75); max-width: 500px; margin: 0 auto 2rem; }
+
+    @media (min-width: 768px) {
+      .about-intro { grid-template-columns: 1fr 1fr; }
+      .leader-cards-grid { grid-template-columns: repeat(4, 1fr); }
+      .roadmap-inner { grid-template-columns: 1fr 1fr; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- NAVBAR --&gt;
+&lt;nav class="navbar" id="navbar"&gt;
+  &lt;div class="container navbar-inner"&gt;
+    &lt;a href="index.html" class="navbar-logo"&gt;
+      &lt;div class="logo-icon"&gt;&lt;svg viewBox="0 0 24 24"&gt;&lt;path d="M12 2L2 7v2h20V7L12 2zm-8 9v6H2v2h20v-2h-2v-6h-2v6h-2v-6h-2v6h-2v-6H8v6H6v-6H4z" fill="white"/&gt;&lt;/svg&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;div class="logo-text"&gt;DPM FH USK&lt;/div&gt;&lt;div class="logo-sub"&gt;Fakultas Hukum&lt;/div&gt;&lt;/div&gt;
+    &lt;/a&gt;
+    &lt;div class="navbar-nav"&gt;
+      &lt;a href="index.html"&gt;Beranda&lt;/a&gt;
+      &lt;a href="about.html"&gt;Tentang Kami&lt;/a&gt;
+      &lt;a href="tugas-fungsi.html"&gt;Tugas &amp; Fungsi&lt;/a&gt;
+      &lt;a href="struktur.html"&gt;Kepengurusan&lt;/a&gt;
+      &lt;a href="berita.html"&gt;Berita&lt;/a&gt;
+      &lt;a href="kontak.html"&gt;Kontak&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="navbar-actions"&gt;
+      &lt;a href="kontak.html" class="btn-cta"&gt;Bergabung&lt;/a&gt;
+      &lt;button class="hamburger" id="hamburger" aria-label="Toggle menu"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+&lt;div class="mobile-menu" id="mobileMenu"&gt;
+  &lt;a href="index.html"&gt;🏠 Beranda&lt;/a&gt;&lt;a href="about.html"&gt;📋 Tentang Kami&lt;/a&gt;&lt;a href="tugas-fungsi.html"&gt;⚖️ Tugas &amp; Fungsi&lt;/a&gt;
+  &lt;a href="struktur.html"&gt;👥 Kepengurusan&lt;/a&gt;&lt;a href="berita.html"&gt;📰 Berita&lt;/a&gt;&lt;a href="kontak.html"&gt;📞 Kontak&lt;/a&gt;
+  &lt;a href="kontak.html" class="mobile-cta"&gt;Bergabung dengan Dewan →&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- PAGE HERO --&gt;
+&lt;section class="page-hero"&gt;
+  &lt;div class="container page-hero-content"&gt;
+    &lt;div class="breadcrumb"&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt; &lt;span&gt;/&lt;/span&gt; About Us&lt;/div&gt;
+    &lt;h1&gt;&lt;em style="color:var(--gold);font-style:normal;"&gt;Judicial Excellence&lt;/em&gt;&lt;/h1&gt;
+    &lt;p&gt;The Student Governance framework of the Faculty of Law, Syiah Kuala University, upholding integrity, modern governance, and the ideals of legal scholars since its inception.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- ORGANIZATIONAL JOURNEY --&gt;
+&lt;section class="section" id="aboutIntro" style="background:var(--bg-white);"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="about-intro"&gt;
+      &lt;div&gt;
+        &lt;span class="section-tag"&gt;DPM · Januari 2024&lt;/span&gt;
+        &lt;h2 style="color:var(--maroon-dark);margin-bottom:1rem;" class="fade-in"&gt;Our Organizational Journey&lt;/h2&gt;
+        &lt;p class="fade-in" style="margin-bottom:2rem;"&gt;
+          DPM FH USK 2024 adalah lembaga perwakilan mahasiswa di Fakultas Hukum Universitas Syiah Kuala yang berperan
+          sebagai lembaga legislatif, memiliki tugas pokok dalam menyusun undang-undang, mengawasi kinerja BEM, serta
+          menyalurkan aspirasi mahasiswa secara demokratis dan berkeadilan.
+        &lt;/p&gt;
+
+        &lt;div class="function-item fade-in"&gt;
+          &lt;div class="function-num"&gt;1&lt;/div&gt;
+          &lt;div&gt;
+            &lt;div class="function-title"&gt;Fungsi Legislasi&lt;/div&gt;
+            &lt;div class="function-desc"&gt;Menyusun undang-undang yang mengikat mahasiswa dan lembaga, sesuai konstitusi.&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="function-item fade-in"&gt;
+          &lt;div class="function-num"&gt;2&lt;/div&gt;
+          &lt;div&gt;
+            &lt;div class="function-title"&gt;Fungsi Anggaran&lt;/div&gt;
+            &lt;div class="function-desc"&gt;Menyetujui dan mengawasi anggaran kegiatan BEM FH USK secara transparan.&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="function-item fade-in"&gt;
+          &lt;div class="function-num"&gt;3&lt;/div&gt;
+          &lt;div&gt;
+            &lt;div class="function-title"&gt;Fungsi Pengawasan&lt;/div&gt;
+            &lt;div class="function-desc"&gt;Memantau dan mengevaluasi jalannya kegiatan lembaga kemahasiswaan secara berkala.&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;a href="tugas-fungsi.html" class="btn btn-primary fade-in" style="margin-top:1rem;"&gt;Selengkapnya →&lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Image + Quote --&gt;
+      &lt;div&gt;
+        &lt;div class="about-img fade-in" style="margin-bottom:1.25rem;"&gt;
+          &lt;i data-lucide="scale" style="width: 80px; height: 80px; stroke-width: 1;"&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class="quote-card fade-in"&gt;
+          &lt;blockquote&gt;"Justice must walk through the voice of the students."&lt;/blockquote&gt;
+          &lt;cite&gt;— Ketua DPM FH USK 2024&lt;/cite&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- VISION &amp; MISSION --&gt;
+&lt;section class="section vm-section"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="grid-2 fade-in" style="gap:1.5rem;"&gt;
+      &lt;!-- Vision --&gt;
+      &lt;div class="vm-box vision"&gt;
+        &lt;div class="icon-box"&gt;&lt;i data-lucide="eye"&gt;&lt;/i&gt;&lt;/div&gt;
+        &lt;h3 style="color:var(--maroon-dark);margin-bottom:0.75rem;"&gt;Our Vision&lt;/h3&gt;
+        &lt;p&gt;
+          To become one of our us transparent and authoritative democratic legislative bodies while setting clear, transparent, legislative process and human relations with the USK faculty of law.
+        &lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Mission --&gt;
+      &lt;div class="vm-box mission"&gt;
+        &lt;div class="icon-box"&gt;&lt;i data-lucide="target"&gt;&lt;/i&gt;&lt;/div&gt;
+        &lt;h3&gt;Our Mission&lt;/h3&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Developing legal, student legislative process centered toward supporting and developing student needs.&lt;/li&gt;
+          &lt;li&gt;Overseeing the BEM-function over a clear overview and accountability assessments bodies with more leniency.&lt;/li&gt;
+          &lt;li&gt;Bringing to our interest of ability and faculty administration in through objective and attorney advocacy.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- LEADERSHIP STRUCTURE --&gt;
+&lt;section class="section leader-section" id="kepemimpinan"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="section-header"&gt;
+      &lt;span class="section-tag"&gt;Struktur Kepengurusan&lt;/span&gt;
+      &lt;h2 class="fade-in"&gt;Leadership Structure&lt;/h2&gt;
+      &lt;p class="fade-in"&gt;The dedicated experienced team, led by the DPM, LSK unit.&lt;/p&gt;
+      &lt;div class="section-divider"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="leader-cards-grid fade-in"&gt;
+      &lt;!-- Ahmad Farid --&gt;
+      &lt;div class="leader-card" style="background:linear-gradient(145deg,#2D0810,#5C1020);"&gt;
+        &lt;div class="leader-card-img"&gt;&lt;i data-lucide="gavel"&gt;&lt;/i&gt;&lt;/div&gt;
+        &lt;div class="leader-card-overlay"&gt;
+          &lt;span class="role"&gt;Sekretaris Jenderal&lt;/span&gt;
+          &lt;div class="name"&gt;Ahmad Farid&lt;/div&gt;
+          &lt;div class="dept"&gt;Direktur Legal, Dewan Legislatif&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- Siti Rahimah --&gt;
+      &lt;div class="leader-card" style="background:linear-gradient(145deg,#3A0A18,#7B1A2E);"&gt;
+        &lt;div class="leader-card-img"&gt;&lt;i data-lucide="briefcase"&gt;&lt;/i&gt;&lt;/div&gt;
+        &lt;div class="leader-card-overlay"&gt;
+          &lt;span class="role"&gt;Bendahara Umum&lt;/span&gt;
+          &lt;div class="name"&gt;Siti Rahimah&lt;/div&gt;
+          &lt;div class="dept"&gt;Komisi Anggaran, Sekretariat&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- Rian Pratama --&gt;
+      &lt;div class="leader-card" style="background:linear-gradient(145deg,#4A0E1F,#9B2335);"&gt;
+        &lt;div class="leader-card-img"&gt;&lt;i data-lucide="users"&gt;&lt;/i&gt;&lt;/div&gt;
+        &lt;div class="leader-card-overlay"&gt;
+          &lt;span class="role"&gt;Wakil Ketua&lt;/span&gt;
+          &lt;div class="name"&gt;Jeremi Marbun&lt;/div&gt;
+          &lt;div class="dept"&gt;Koordinator Komisi-Komisi&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- Ketua DPM --&gt;
+      &lt;div class="leader-card" style="background:linear-gradient(145deg,#3D0A1A,#7B1A2E);"&gt;
+        &lt;div class="leader-card-img"&gt;&lt;i data-lucide="user-plus"&gt;&lt;/i&gt;&lt;/div&gt;
+        &lt;div class="leader-card-overlay"&gt;
+          &lt;span class="role"&gt;Ketua DPM&lt;/span&gt;
+          &lt;div class="name"&gt;Nazatul Hisar&lt;/div&gt;
+          &lt;div class="dept"&gt;Pimpinan Umum DPM FH USK 2024&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div style="text-align:center;margin-top:2rem;"&gt;
+      &lt;a href="struktur.html" class="btn btn-outline" id="seeAllMembersBtn"&gt;Lihat Semua Anggota →&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- GOVERNANCE ROADMAP --&gt;
+&lt;section class="section roadmap-section" id="roadmap"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="roadmap-inner"&gt;
+
+      &lt;div&gt;
+        &lt;span class="section-tag"&gt;Program Kerja 2024&lt;/span&gt;
+        &lt;h2 style="color:var(--maroon-dark);margin-bottom:1.5rem;" class="fade-in"&gt;Governance Roadmap&lt;/h2&gt;
+
+        &lt;div class="timeline fade-in"&gt;
+          &lt;div class="timeline-item"&gt;
+            &lt;div class="timeline-dot done"&gt;&lt;/div&gt;
+            &lt;div class="timeline-date"&gt;Jan 2024&lt;/div&gt;
+            &lt;div class="timeline-title"&gt;Legislative Grand Opening&lt;/div&gt;
+            &lt;div class="timeline-desc"&gt;Inaugural of all the allocated representatives and formal of specialized functionalism.&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="timeline-item"&gt;
+            &lt;div class="timeline-dot active"&gt;&lt;/div&gt;
+            &lt;div class="timeline-date"&gt;Apr 2024&lt;/div&gt;
+            &lt;div class="timeline-title"&gt;Mid-Year Judicial Audit&lt;/div&gt;
+            &lt;div class="timeline-desc"&gt;Comprehensive review of student executive programs and financial accountability reports.&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="timeline-item"&gt;
+            &lt;div class="timeline-dot"&gt;&lt;/div&gt;
+            &lt;div class="timeline-date"&gt;Des 2024&lt;/div&gt;
+            &lt;div class="timeline-title"&gt;General Election Oversight&lt;/div&gt;
+            &lt;div class="timeline-desc"&gt;Reviewing all university requirements and preparing for the next general elections cycle.&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Stats column --&gt;
+      &lt;div class="fade-in"&gt;
+        &lt;h3 style="font-family:var(--font-serif);color:var(--maroon-dark);margin-bottom:1.5rem;"&gt;Capaian Legislasi&lt;/h3&gt;
+        &lt;div class="progress-bar-wrap" style="margin-bottom:1.5rem;"&gt;
+          &lt;div class="progress-bar-label"&gt;
+            &lt;span&gt;Penyusunan UU Mahasiswa&lt;/span&gt;
+            &lt;span&gt;85%&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="progress-bar-track"&gt;
+            &lt;div class="progress-bar-fill" data-width="85"&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="progress-bar-wrap" style="margin-bottom:1.5rem;"&gt;
+          &lt;div class="progress-bar-label"&gt;
+            &lt;span&gt;Pengawasan Program BEM&lt;/span&gt;
+            &lt;span&gt;70%&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="progress-bar-track"&gt;
+            &lt;div class="progress-bar-fill" data-width="70"&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="progress-bar-wrap" style="margin-bottom:1.5rem;"&gt;
+          &lt;div class="progress-bar-label"&gt;
+            &lt;span&gt;Aspirasi Mahasiswa Tersalurkan&lt;/span&gt;
+            &lt;span&gt;60%&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="progress-bar-track"&gt;
+            &lt;div class="progress-bar-fill" data-width="60"&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="grid-2" style="margin-top:2rem;gap:1rem;"&gt;
+          &lt;div class="stat-box"&gt;
+            &lt;span class="num" data-count="12"&gt;0&lt;/span&gt;
+            &lt;span class="lbl"&gt;Draft Regulasi&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="stat-box"&gt;
+            &lt;span class="num" data-count="4"&gt;0&lt;/span&gt;
+            &lt;span class="lbl"&gt;Sudah Disahkan&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="stat-box"&gt;
+            &lt;span class="num" data-count="8"&gt;0&lt;/span&gt;
+            &lt;span class="lbl"&gt;Rapat Pleno&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class="stat-box"&gt;
+            &lt;span class="num" data-count="200"&gt;0&lt;/span&gt;
+            &lt;span class="lbl"&gt;Aspirasi Masuk&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- CTA --&gt;
+&lt;section class="cta-section"&gt;
+  &lt;div class="container"&gt;
+    &lt;h2 class="fade-in"&gt;Ingin Lebih Mengenal DPM?&lt;/h2&gt;
+    &lt;p class="fade-in"&gt;Kunjungi kami atau hubungi untuk informasi lebih lanjut tentang DPM FH USK.&lt;/p&gt;
+    &lt;div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;" class="fade-in"&gt;
+      &lt;a href="struktur.html" class="btn btn-gold"&gt;Lihat Kepengurusan&lt;/a&gt;
+      &lt;a href="kontak.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);"&gt;Kontak Kami&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- FOOTER --&gt;
+&lt;footer class="footer"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="footer-grid"&gt;
+      &lt;div&gt;
+        &lt;div class="footer-logo"&gt;DPM FH USK&lt;/div&gt;
+        &lt;p class="footer-desc"&gt;Dewan Perwakilan Mahasiswa Fakultas Hukum Universitas Syiah Kuala. Toward Judicial Excellence.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="footer-title"&gt;Navigasi&lt;/div&gt;
+        &lt;div class="footer-links"&gt;
+          &lt;a href="index.html"&gt;Beranda&lt;/a&gt;
+          &lt;a href="about.html"&gt;Tentang&lt;/a&gt;
+          &lt;a href="tugas-fungsi.html"&gt;Tugas &amp; Fungsi&lt;/a&gt;
+          &lt;a href="struktur.html"&gt;Kepengurusan&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="footer-title"&gt;Legal&lt;/div&gt;
+        &lt;div class="footer-links"&gt;
+          &lt;a href="#"&gt;Privacy Policy&lt;/a&gt;
+          &lt;a href="#"&gt;Terms of Service&lt;/a&gt;
+          &lt;a href="#"&gt;Legal Archive&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="footer-title"&gt;Quick Links&lt;/div&gt;
+        &lt;div class="footer-links"&gt;
+          &lt;a href="berita.html"&gt;Berita&lt;/a&gt;
+          &lt;a href="kontak.html"&gt;Kontak&lt;/a&gt;
+          &lt;a href="#"&gt;Portal Fakultas&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer-bottom"&gt;
+      &lt;p&gt;© 2024 DPM FH USK. Toward Judicial Excellence.&lt;/p&gt;
+      &lt;div class="footer-bottom-links"&gt;
+        &lt;a href="#"&gt;Privacy Policy&lt;/a&gt;
+        &lt;a href="#"&gt;Terms of Service&lt;/a&gt;
+        &lt;a href="#"&gt;Faculty Portal&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+
+&lt;button id="scrollTop" aria-label="Scroll to top"&gt;&lt;i data-lucide="arrow-up"&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  lucide.createIcons();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;

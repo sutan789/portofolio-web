@@ -1,0 +1,74 @@
+{% extends 'registration/base_auth.html' %}
+
+{% block title %}Daftar{% endblock %}
+
+{% block auth_quote %}
+"Setiap cerita adalah <span>benang</span> dalam permadani identitas kita yang tak ternilai."
+{% endblock %}
+
+{% block auth_footer_text %}
+Bergabunglah bersama kami
+{% endblock %}
+
+{% block auth_title %}Daftar Akun{% endblock %}
+
+{% block auth_subtitle %}Mulailah perjalanan menelusuri arsip leluhur{% endblock %}
+
+{% block auth_content %}
+{% if form.errors %}
+<div class="alert alert-error">
+    <i class="fas fa-exclamation-circle"></i>
+    <ul style="margin: 0; padding-left: 20px;">
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                <li><strong>{{ field|title }}:</strong> {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="content-grid-2" style="gap: 16px; margin-bottom: 20px;">
+        <div class="auth-form-group" style="margin-bottom: 0;">
+            <label for="id_first_name">Nama Depan</label>
+            <input type="text" name="first_name" id="id_first_name" class="auth-input" placeholder="Adhi" required>
+        </div>
+        <div class="auth-form-group" style="margin-bottom: 0;">
+            <label for="id_last_name">Nama Belakang</label>
+            <input type="text" name="last_name" id="id_last_name" class="auth-input" placeholder="Karta" required>
+        </div>
+    </div>
+
+    <div class="auth-form-group">
+        <label for="id_reg_username">Username</label>
+        <input type="text" name="username" id="id_reg_username" class="auth-input" placeholder="curator_adhi" required>
+    </div>
+
+    <div class="auth-form-group">
+        <label for="id_email">Email</label>
+        <input type="email" name="email" id="id_email" class="auth-input" placeholder="adhi@heritage.id" required>
+    </div>
+
+    <div class="content-grid-2" style="gap: 16px; margin-bottom: 20px;">
+        <div class="auth-form-group" style="margin-bottom: 0;">
+            <label for="id_password1">Kata Sandi</label>
+            <input type="password" name="password1" id="id_password1" class="auth-input" placeholder="••••••••" required>
+        </div>
+        <div class="auth-form-group" style="margin-bottom: 0;">
+            <label for="id_password2">Konfirmasi</label>
+            <input type="password" name="password2" id="id_password2" class="auth-input" placeholder="••••••••" required>
+        </div>
+    </div>
+
+    <button type="submit" class="btn-premium" style="width: 100%; padding: 18px; margin-top: 10px;">
+        <i class="fas fa-user-plus"></i> Buat Akun
+    </button>
+</form>
+
+<div class="register-link">
+    Sudah punya akun? <a href="{% url 'login' %}">Masuk di sini</a>
+</div>
+{% endblock %}

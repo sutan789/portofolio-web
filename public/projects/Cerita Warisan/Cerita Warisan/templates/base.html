@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cerita Warisan - Pustaka Digital{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}?v=1.7">
+    {% block extra_css %}{% endblock %}
+</head>
+<body data-theme="light" class="{% block body_class %}{% endblock %}">
+    
+    <header class="mobile-header">
+        <a href="{% url 'folklore:home' %}" style="display:flex; align-items:center; text-decoration:none;">
+            <img src="{% static 'images/logo.jpg' %}" alt="Cerita Warisan" style="height:46px; width:46px; border-radius:50%; object-fit:cover; object-position:center; border:2px solid rgba(197,160,89,0.5);">
+            <span style="color:white; font-family:var(--font-serif); font-size:1.05rem; font-weight:700; margin-left:10px; letter-spacing:0.3px;">Cerita Warisan</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="app-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <a href="{% url 'folklore:home' %}" style="text-decoration:none; display:flex; flex-direction:column; align-items:center; margin-bottom:32px;">
+                <img src="{% static 'images/logo.jpg' %}" alt="Cerita Warisan" style="width:120px; height:120px; border-radius:50%; object-fit:cover; object-position:center; border:3px solid rgba(197,160,89,0.4); box-shadow:0 8px 24px rgba(0,0,0,0.25); margin-bottom:10px; transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <span style="color:rgba(255,255,255,0.7); font-size:0.6rem; text-transform:uppercase; letter-spacing:2.5px; font-family:var(--font-sans); font-weight:600;">Menjaga Kisah Budaya Kita</span>
+            </a>
+
+            <div class="sidebar-title">Menu Utama</div>
+            <nav>
+                <a href="{% url 'folklore:home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                    <i class="fas fa-compass"></i> Beranda
+                </a>
+                <a href="{% url 'folklore:library' %}" class="nav-link {% if request.resolver_match.url_name == 'library' %}active{% endif %}">
+                    <i class="fas fa-book-open"></i> Perpustakaan
+                </a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'folklore:profile' %}" class="nav-link {% if request.resolver_match.url_name == 'profile' or request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                    <i class="fas fa-user-circle"></i> Profil Saya
+                </a>
+                {% if user.is_staff %}
+                <a href="{% url 'folklore:admin_dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'admin_dashboard' %}active{% endif %}" style="color: #c5a059;">
+                    <i class="fas fa-shield-alt"></i> Panel Admin
+                </a>
+                {% endif %}
+                {% endif %}
+            </nav>
+
+
+            <div style="margin-top: auto;">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'folklore:profile' %}" style="text-decoration: none; color: inherit;">
+                        <div class="nav-profile-card">
+                            <i class="fas fa-user-circle fa-2x"></i>
+                            <div class="profile-summary">
+                                <div class="username">{{ user.username }}</div>
+                                <div class="action-hint">Lihat Profil →</div>
+                            </div>
+                        </div>
+                    </a>
+                    {% if user.is_staff %}
+                    <a href="{% url 'admin:index' %}" class="nav-link">
+                        <i class="fas fa-cog"></i> Pengaturan Admin
+                    </a>
+                    {% endif %}
+                    <form action="{% url 'logout' %}" method="post" style="display: block;">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-link logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Keluar
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn-premium" style="display: flex; width: 100%; justify-content: center;">
+                        <i class="fas fa-sign-in-alt"></i> Masuk ke Arsip
+                    </a>
+                {% endif %}
+            </div>
+        </aside>
+
+        <main class="main-content">
+            {% if messages %}
+            <div class="alert-container">
+                {% for msg in messages %}
+                <div class="alert alert-{% if msg.tags == 'error' %}error{% else %}success{% endif %}">
+                    <i class="fas {% if msg.tags == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %}"></i>
+                    {{ msg }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <div class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        // Menu Toggle Logic
+        const menuBtn = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        }
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

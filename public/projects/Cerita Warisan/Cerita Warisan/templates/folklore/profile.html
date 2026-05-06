@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block title %}Profil - {{ user.username }} | Cerita Warisan{% endblock %}
+
+{% block content %}
+<div style="max-width: 1100px; margin: 0 auto; padding-bottom: 80px;">
+
+    <!-- Profile Banner -->
+    <div class="profile-banner">
+        <div class="profile-banner-inner">
+            <div style="position: absolute; right: -40px; bottom: -40px; font-size: 18rem; opacity: 0.05; transform: rotate(-15deg); pointer-events: none;">
+                <i class="fas fa-feather-alt"></i>
+            </div>
+            <!-- Avatar -->
+            <div class="profile-avatar">
+                <i class="fas fa-user-circle" style="font-size: 3.5rem; color: var(--secondary-color);"></i>
+            </div>
+            <!-- Info -->
+            <div class="profile-info">
+                <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.5; margin-bottom: 6px;">Kurator Warisan</div>
+                <h1 style="font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 6px; font-family: var(--font-serif); color: white; line-height: 1.1;">{{ user.username }}</h1>
+                <div style="opacity: 0.5; font-size: 0.85rem;">
+                    <i class="fas fa-calendar-alt" style="margin-right: 6px;"></i>Bergabung sejak {{ user.date_joined|date:"F Y" }}
+                </div>
+            </div>
+            <!-- Stats -->
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <div class="stat-value">{{ stats.stories_read }}</div>
+                    <div class="stat-label">Dibaca</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">{{ stats.bookmarks_count }}</div>
+                    <div class="stat-label">Tersimpan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">{{ stats.reviews_count }}</div>
+                    <div class="stat-label">Ulasan</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="content-grid-2">
+
+        <!-- Bookmarks -->
+        <section>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 14px;">
+                <h2 style="font-size: 1.3rem; font-family: var(--font-serif);">
+                    <i class="fas fa-bookmark" style="color: var(--secondary-color); margin-right: 10px; font-size: 0.85em;"></i>Arsip Pribadi
+                </h2>
+                <span style="font-size: 0.78rem; opacity: 0.4; font-weight: 600;">{{ bookmarks|length }} cerita</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                {% for b in bookmarks %}
+                <a href="{% url 'folklore:story_detail' b.story.slug %}" style="text-decoration: none; color: inherit;">
+                    <div style="display: flex; gap: 14px; align-items: center; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 14px; transition: var(--transition);"
+                         onmouseover="this.style.transform='translateX(4px)'; this.style.borderColor='var(--secondary-color)'"
+                         onmouseout="this.style.transform=''; this.style.borderColor='var(--border-color)'">
+                        <div style="width: 52px; height: 52px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: var(--primary-color);">
+                            {% if b.story.cover_image %}
+                            <img src="{{ b.story.cover_image.url }}" style="width: 100%; height: 100%; object-fit: cover;">
+                            {% else %}
+                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3);">
+                                <i class="fas fa-scroll"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div style="flex: 1; min-width: 0;">
+                            <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ b.story.title }}</div>
+                            <div style="font-size: 0.78rem; opacity: 0.4;"><i class="fas fa-map-marker-alt" style="margin-right: 4px;"></i>{{ b.story.region.name }}</div>
+                        </div>
+                        <i class="fas fa-chevron-right" style="opacity: 0.25; flex-shrink: 0;"></i>
+                    </div>
+                </a>
+                {% empty %}
+                <div style="text-align: center; padding: 45px 20px; background: var(--card-bg); border-radius: 18px; border: 2px dashed var(--border-color); opacity: 0.5;">
+                    <i class="fas fa-bookmark" style="font-size: 2rem; margin-bottom: 12px; display: block; opacity: 0.3;"></i>
+                    <p style="margin-bottom: 10px; font-size: 0.9rem;">Belum ada cerita tersimpan.</p>
+                    <a href="{% url 'folklore:library' %}" style="color: var(--secondary-color); font-weight: 700; text-decoration: none; font-size: 0.85rem;">Jelajahi Perpustakaan →</a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Reading History -->
+        <section>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 14px;">
+                <h2 style="font-size: 1.3rem; font-family: var(--font-serif);">
+                    <i class="fas fa-history" style="color: var(--secondary-color); margin-right: 10px; font-size: 0.85em;"></i>Riwayat Baca
+                </h2>
+                <span style="font-size: 0.78rem; opacity: 0.4; font-weight: 600;">Terbaru</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                {% for item in reading_history %}
+                <a href="{% url 'folklore:story_detail' item.story.slug %}" style="text-decoration: none; color: inherit;">
+                    <div style="display: flex; gap: 14px; align-items: center; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 14px; transition: var(--transition);"
+                         onmouseover="this.style.transform='translateX(4px)'; this.style.borderColor='var(--secondary-color)'"
+                         onmouseout="this.style.transform=''; this.style.borderColor='var(--border-color)'">
+                        <div style="width: 52px; height: 52px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: var(--primary-color);">
+                            {% if item.story.cover_image %}
+                            <img src="{{ item.story.cover_image.url }}" style="width: 100%; height: 100%; object-fit: cover;">
+                            {% else %}
+                            <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3);">
+                                <i class="fas fa-scroll"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div style="flex: 1; min-width: 0;">
+                            <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ item.story.title }}</div>
+                            <div style="font-size: 0.78rem; opacity: 0.4;">
+                                <i class="fas fa-clock" style="margin-right: 4px;"></i>{{ item.last_read|timesince }} lalu
+                            </div>
+                        </div>
+                        <span style="font-size: 0.68rem; background: rgba(26,60,52,0.08); color: var(--primary-color); padding: 4px 10px; border-radius: 20px; white-space: nowrap; font-weight: 600; flex-shrink: 0;">
+                            Lanjut Baca
+                        </span>
+                    </div>
+                </a>
+                {% empty %}
+                <div style="text-align: center; padding: 45px 20px; background: var(--card-bg); border-radius: 18px; border: 2px dashed var(--border-color); opacity: 0.5;">
+                    <i class="fas fa-book-open" style="font-size: 2rem; margin-bottom: 12px; display: block; opacity: 0.3;"></i>
+                    <p style="margin-bottom: 10px; font-size: 0.9rem;">Belum ada riwayat membaca.</p>
+                    <a href="{% url 'folklore:library' %}" style="color: var(--secondary-color); font-weight: 700; text-decoration: none; font-size: 0.85rem;">Mulai Membaca →</a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Account Actions -->
+    <div class="account-actions" style="margin-top: 40px; padding: 30px 40px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 22px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+        <div>
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.4; margin-bottom: 5px;">Pengaturan Akun</div>
+            <div style="font-weight: 600;">Kelola akun dan preferensi kamu</div>
+        </div>
+        <div class="btn-group" style="display: flex; gap: 12px; flex-wrap: wrap;">
+            {% if user.is_staff %}
+            <a href="{% url 'admin:index' %}" class="btn-premium" style="background: transparent; color: var(--text-color); border: 1px solid var(--border-color);">
+                <i class="fas fa-cog"></i> Admin Panel
+            </a>
+            {% endif %}
+            <form action="{% url 'logout' %}" method="post" style="margin: 0;">
+                {% csrf_token %}
+                <button type="submit" class="btn-premium logout-btn" style="background: linear-gradient(135deg, #c0392b, #e74c3c); color: white !important;">
+                    <i class="fas fa-sign-out-alt"></i> Keluar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Berita dan kegiatan terbaru dari DPM FH USK – Dewan Perwakilan Mahasiswa Fakultas Hukum Universitas Syiah Kuala.">
+  <title>Berita – DPM FH USK</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .news-hero-featured {
+      display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem;
+    }
+    .news-featured-img {
+      border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--maroon-dark), var(--maroon));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; color: rgba(255,255,255,0.15); position: relative;
+    }
+    .news-featured-badge {
+      position: absolute; top: 1rem; left: 1rem;
+      background: var(--gold); color: var(--maroon-dark);
+      padding: 0.3rem 0.8rem; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .news-featured-content { display: flex; flex-direction: column; justify-content: center; }
+    .news-grid-section { background: var(--bg-section); }
+    @media (min-width: 768px) { .news-hero-featured { grid-template-columns: 1.2fr 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v2h20V7L12 2zm-8 9v6H2v2h20v-2h-2v-6h-2v6h-2v-6h-2v6h-2v-6H8v6H6v-6H4z" fill="white"/></svg></div>
+      <div><div class="logo-text">DPM FH USK</div><div class="logo-sub">Fakultas Hukum</div></div>
+    </a>
+    <div class="navbar-nav">
+      <a href="index.html">Beranda</a><a href="about.html">Tentang Kami</a><a href="tugas-fungsi.html">Tugas & Fungsi</a>
+      <a href="struktur.html">Kepengurusan</a><a href="berita.html">Berita</a><a href="kontak.html">Kontak</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="kontak.html" class="btn-cta">Bergabung</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Beranda</a><a href="about.html">📋 Tentang Kami</a><a href="tugas-fungsi.html">⚖️ Tugas & Fungsi</a>
+  <a href="struktur.html">👥 Kepengurusan</a><a href="berita.html">📰 Berita</a><a href="kontak.html">📞 Kontak</a>
+  <a href="kontak.html" class="mobile-cta">Bergabung dengan Dewan →</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> Berita</div>
+    <h1>Berita & <em style="color:var(--gold);font-style:normal;">Kegiatan</em></h1>
+    <p>Informasi terbaru dari kegiatan legislatif, advokasi, dan program kerja DPM FH USK.</p>
+  </div>
+</section>
+
+<!-- FEATURED ARTICLE -->
+<section class="section" style="background:var(--bg-white);">
+  <div class="container">
+    <div class="news-hero-featured fade-in">
+      <div class="news-featured-img">
+        <div class="news-featured-badge">Berita Utama</div>
+        📜
+      </div>
+      <div class="news-featured-content">
+        <div class="news-meta">
+          <span class="news-category">Legislasi</span>
+          <span class="news-date">15 Maret 2024</span>
+        </div>
+        <h2 style="color:var(--maroon-dark);margin-bottom:1rem;font-size:clamp(1.3rem,3vw,1.8rem);">
+          RUU Pemilihan Raya Mahasiswa 2024 Resmi Disahkan oleh Sidang Paripurna DPM FH USK
+        </h2>
+        <p style="margin-bottom:1.5rem;">
+          Setelah melalui proses panjang yang melibatkan uji publik, pembahasan komisi, dan revisi substansial,
+          DPM FH USK resmi mengesahkan Undang-Undang tentang Pemilihan Raya Mahasiswa (PEMIRA) 2024.
+          Aturan ini mengatur tata cara pelaksanaan pemilihan presiden BEM, wakil, serta anggota senat.
+        </p>
+        <a href="#" class="news-link">Baca selengkapnya →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS GRID -->
+<section class="section news-grid-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Semua Berita</span>
+      <h2 class="fade-in">Berita Terkini</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="filter-group" style="justify-content:center;">
+      <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="legislasi">Legislasi</button>
+      <button class="filter-btn" data-filter="advokasi">Advokasi</button>
+      <button class="filter-btn" data-filter="kegiatan">Kegiatan</button>
+      <button class="filter-btn" data-filter="pengumuman">Pengumuman</button>
+    </div>
+
+    <div class="grid-3" data-filter-container>
+      <div class="news-card fade-in" data-category="legislasi">
+        <div class="news-card-img"><div class="news-img-placeholder">📜</div></div>
+        <div class="news-card-body">
+          <div class="news-meta"><span class="news-category">Legislasi</span><span class="news-date">10 Mar 2024</span></div>
+          <h3>Draft RUU PEMIRA Masuk Tahap Pembahasan Komisi</h3>
+          <p>Rancangan Undang-Undang tentang Pemilihan Raya Mahasiswa resmi dibahas di tingkat komisi setelah melalui proses uji publik.</p>
+          <a href="#" class="news-link">Selengkapnya →</a>
+        </div>
+      </div>
+      <div class="news-card fade-in" data-category="advokasi">
+        <div class="news-card-img"><div class="news-img-placeholder">💬</div></div>
+        <div class="news-card-body">
+          <div class="news-meta"><span class="news-category">Advokasi</span><span class="news-date">5 Mar 2024</span></div>
+          <h3>Rapat Dengar Pendapat Bersama Perwakilan Angkatan</h3>
+          <p>DPM FH USK mengadakan RDP dengan perwakilan seluruh angkatan untuk menampung aspirasi akademik dan non-akademik.</p>
+          <a href="#" class="news-link">Selengkapnya →</a>
+        </div>
+      </div>
+      <div class="news-card fade-in" data-category="kegiatan">
+        <div class="news-card-img"><div class="news-img-placeholder">🏛️</div></div>
+        <div class="news-card-body">
+          <div class="news-meta"><span class="news-category">Kegiatan</span><span class="news-date">28 Feb 2024</span></div>
+          <h3>Sidang Paripurna Pembukaan DPM FH USK 2024</h3>
+          <p>Sidang paripurna resmi membuka periode kepengurusan baru DPM FH USK dengan pengesahan agenda kerja tahunan.</p>
+          <a href="#" class="news-link">Selengkapnya →</a>
+        </div>
+      </div>
+      <div class="news-card fade-in" data-category="pengumuman">
+        <div class="news-card-img"><div class="news-img-placeholder">📢</div></div>
+        <div class="news-card-body">
+          <div class="news-meta"><span class="news-category">Pengumuman</span><span class="news-date">20 Feb 2024</span></div>
+          <h3>Pendaftaran Terbuka: Komisi Aspirasi Mahasiswa</h3>
+          <p>DPM FH USK membuka pendaftaran bagi mahasiswa FH USK yang ingin bergabung dalam Komisi Aspirasi dan Advokasi.</p>
+          <a href="#" class="news-link">Selengkapnya →</a>
+        </div>
+      </div>
+      <div class="news-card fade-in" data-category="legislasi">
+        <div class="news-card-img"><div class="news-img-placeholder">⚖️</div></div>
+        <div class="news-card-body">
+          <div class="news-meta"><span class="news-category">Legislasi</span><span class="news-date">15 Feb 2024</span></div>
+          <h3>Revisi AD/ART DPM FH USK: Modernisasi Konstitusi</h3>
+          <p>Tim khusus DPM berhasil merampungkan revisi draf AD/ART yang lebih demokratis dan sesuai perkembangan zaman.</p>
+          <a href="#" class="news-link">Selengkapnya →</a>
+        </div>
+      </div>
+      <div class="news-card fade-in" data-category="kegiatan">
+        <div class="news-card-img"><div class="news-img-placeholder">🤝</div></div>
+        <div class="news-card-body">
+          <div class="news-meta"><span class="news-category">Kegiatan</span><span class="news-date">10 Feb 2024</span></div>
+          <h3>Workshop Penulisan Legislasi Bersama Pakar Hukum</h3>
+          <p>DPM FH USK mengundang dosen Fakultas Hukum sebagai narasumber workshop teknik penyusunan undang-undang mahasiswa.</p>
+          <a href="#" class="news-link">Selengkapnya →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="fade-in">Tetap Terhubung</h2>
+    <p class="fade-in">Ikuti media sosial kami untuk berita terbaru dari DPM FH USK.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;" class="fade-in">
+      <a href="#" class="btn btn-gold">📷 Instagram</a>
+      <a href="#" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);">💼 LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo">DPM FH USK</div><p class="footer-desc">Toward Judicial Excellence & Modern Governance.</p></div>
+      <div><div class="footer-title">Navigasi</div><div class="footer-links"><a href="index.html">Beranda</a><a href="about.html">Tentang</a><a href="tugas-fungsi.html">Tugas & Fungsi</a><a href="struktur.html">Kepengurusan</a></div></div>
+      <div><div class="footer-title">Legal</div><div class="footer-links"><a href="#">Kebijakan Privasi</a><a href="#">Ketentuan Layanan</a></div></div>
+      <div><div class="footer-title">Kontak</div><div class="footer-links"><a href="mailto:dpmhukum@usk.ac.id">dpmhukum@usk.ac.id</a><a href="kontak.html">Kirim Pesan</a></div></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 DPM FH USK. Toward Judicial Excellence.</p><div class="footer-bottom-links"><a href="#">Kebijakan Privasi</a><a href="#">Ketentuan Layanan</a></div></div>
+  </div>
+</footer>
+<button id="scrollTop" aria-label="Scroll to top">↑</button>
+<script src="js/main.js"></script>
+</body>
+</html>

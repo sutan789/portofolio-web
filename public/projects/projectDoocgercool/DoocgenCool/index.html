@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocGenCool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Library for Excel Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Panel Kontrol -->
+        <aside class="control-panel no-print">
+            <div class="panel-header" style="text-align: center;">
+                <img src="asset/logo.png" alt="DocGenCool Logo"
+                    style="width: 220px; height: auto; margin: -30px auto -15px auto; display: block; object-fit: contain;">
+                <p>HALLO SELAMAT DATANG DI DOCGENCOOL</p>
+            </div>
+
+            <!-- Pilih Jenis Dokumen -->
+            <div class="form-group mb-4">
+                <label for="docType">Pilih Jenis Dokumen</label>
+                <select id="docType" class="main-select">
+                    <option value="RELAWAN">Absensi Relawan (Zig-zag TTD)</option>
+                    <option value="AIR_ULANG">Jadwal Masuk Air Isi Ulang</option>
+                    <option value="GAS">Jadwal Pergantian Gas</option>
+                    <option value="INSENTIF">Slip Insentif Sekolah & Posyandu</option>
+                </select>
+            </div>
+
+            <form id="absensiForm" class="input-form">
+                <div class="form-group">
+                    <label for="tanggal">Tanggal / Periode</label>
+                    <input type="date" id="tanggal" required>
+                </div>
+            </form>
+
+            <div class="panel-actions">
+                <button class="btn-primary" id="btnPrint">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="icon-mr">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                    Cetak / Simpan PDF
+                </button>
+                <button class="btn-secondary mt-2" id="btnExcel">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="icon-mr">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="8" y1="13" x2="16" y2="13"></line>
+                        <line x1="8" y1="17" x2="16" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Unduh File Excel
+                </button>
+            </div>
+
+            <hr class="panel-divider">
+
+            <!-- Form Input Dinamis (Akan diupdate lewat JS) -->
+            <div id="dynamicFormContainer">
+                <div class="panel-header text-left mb-2">
+                    <h2 id="formTitle" class="form-title">Tambah Baris Baru</h2>
+                </div>
+
+                <form id="addItemForm" class="input-form">
+                    <!-- Fields will be injected here by script.js -->
+                    <div id="formFields"></div>
+                    <button type="button" class="btn-primary btn-add" id="btnAdd">
+                        + Tambah Baris
+                    </button>
+                </form>
+            </div>
+
+            <!-- Pengaturan Per-Slip Insentif -->
+            <div id="insentifSettingsContainer" style="display: none;">
+                <div class="panel-header text-left mb-2">
+                    <h2 class="form-title">Isi Data Slip</h2>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 5px;">Pilih instansi lalu isi datanya satu
+                        per satu.</p>
+                </div>
+                <form class="input-form">
+                    <div class="form-group">
+                        <label>Pilih Sekolah/Posyandu</label>
+                        <select id="iSelectSekolah" class="main-select"></select>
+                    </div>
+                </form>
+
+                <!-- ========== FORM SEKOLAH ========== -->
+                <div id="formSekolahBlock">
+                    <div class="form-badge badge-school">
+                        <strong>📘 Form Sekolah</strong>
+                        <p>Rumus: Jumlah Hari × Insentif/Hari</p>
+                    </div>
+                    <form class="input-form">
+                        <div class="form-group">
+                            <label>Nama Guru</label>
+                            <input type="text" id="iGuruSekolah" placeholder="Kosongkan jika tulis tangan">
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor Surat</label>
+                            <input type="text" id="iNoSuratSekolah" placeholder="Cth: 027/SPPG/INS/IV/2026">
+                        </div>
+                        <div class="form-group">
+                            <label>Periode</label>
+                            <input type="text" id="iPeriodeSekolah" placeholder="Cth: 13 April s.d 25 April 2026">
+                        </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <input type="text" id="iKeteranganSekolah" placeholder="Cth: Insentif Periode 8">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Hari</label>
+                            <input type="text" id="iHariSekolah" placeholder="Cth: 10">
+                        </div>
+                        <div class="form-group">
+                            <label>Insentif Per Hari (Rp)</label>
+                            <input type="text" id="iInsentifSekolah" placeholder="Cth: 20.000">
+                        </div>
+                        <div class="form-group">
+                            <label>Total (Rp)</label>
+                            <input type="text" id="iTotalSekolah" placeholder="Otomatis" readonly
+                                style="background-color: #f1f5f9; cursor: not-allowed; font-weight: 600; color: #334155;">
+                        </div>
+                        <button type="button" class="btn-primary mt-2" id="btnApplySekolah"
+                            style="background-color: #059669;">
+                            Simpan ke Slip
+                        </button>
+                    </form>
+                </div>
+
+                <!-- ========== FORM POSYANDU ========== -->
+                <div id="formPosyanduBlock" style="display: none;">
+                    <div class="form-badge badge-posyandu">
+                        <strong>🏥 Form Posyandu</strong>
+                        <p>Rumus: Totebag × Hari × Rp1.000</p>
+                    </div>
+                    <form class="input-form">
+                        <div class="form-group">
+                            <label>Nama Kader</label>
+                            <input type="text" id="iKaderPosyandu" placeholder="Nama Kader Posyandu">
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor Surat</label>
+                            <input type="text" id="iNoSuratPosyandu" placeholder="Cth: 027/SPPG/INS/IV/2026">
+                        </div>
+                        <div class="form-group">
+                            <label>Periode</label>
+                            <input type="text" id="iPeriodePosyandu" placeholder="Cth: 13 April s.d 25 April 2026">
+                        </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <input type="text" id="iKeteranganPosyandu" placeholder="Cth: Insentif Kader Posyandu">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Hari</label>
+                            <input type="text" id="iHariPosyandu" placeholder="Cth: 11">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Totebag <small style="color:#888;">(angka, bukan Rp)</small></label>
+                            <input type="text" id="iTotebagPosyandu" placeholder="Cth: 110">
+                        </div>
+                        <div class="form-group">
+                            <label>Total (Rp) <small style="color:#888;">= Totebag × Hari × 1.000</small></label>
+                            <input type="text" id="iTotalPosyandu" placeholder="Otomatis" readonly
+                                style="background-color: #fef3c7; cursor: not-allowed; font-weight: 600; color: #92400e;">
+                        </div>
+                        <button type="button" class="btn-primary mt-2" id="btnApplyPosyandu"
+                            style="background-color: #d97706;">
+                            Simpan ke Slip
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel-notes mt-4">
+                <small class="text-muted">
+                    <strong>Tips:</strong> Teks di dalam tabel (seperti Nama dan Posisi) bisa diedit. Klik saja teksnya
+                    dan ketik untuk mengubah namanya.
+                </small>
+            </div>
+        </aside>
+
+        <!-- Panel Preview -->
+        <main class="preview-panel">
+            <div class="document-page" id="documentPage">
+                <div class="doc-header">
+                    <div class="kop-container">
+                        <img src="asset/BGN_LOGO.png" alt="Logo" class="kop-logo" onerror="this.style.display='none'">
+                        <div class="kop-text">
+                            <h2>DAFTAR KEHADIRAN</h2>
+                            <h2>TENAGA RELAWAN</h2>
+                            <h2>YAYASAN TEUNGKU CHIEK DIBITAI</h2>
+                            <h2>SPPG LAM ARA KEC. BANDA RAYA, KOTA BANDA ACEH</h2>
+                        </div>
+                        <div class="kop-spacer"></div>
+                    </div>
+                    <hr class="kop-divider">
+                    <h2 class="doc-date">TANGGAL <span id="outTanggal">14 FEBRUARI 2026</span></h2>
+                </div>
+
+                <table class="absensi-table" id="absensiTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">No</th>
+                            <th style="width: 20%;">Posisi</th>
+                            <th style="width: 30%;">Nama</th>
+                            <th style="width: 15%;">Jam Masuk</th>
+                            <th colspan="2" style="width: 30%;">TANDA TANGAN</th>
+                            <th class="no-print" style="width: 60px; border: none; background: transparent;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+                <div class="print-footer">
+                    Dokumen ini digenerate secara otomatis oleh DocGenCool.<br>
+                    Developer: Sutan Irvan Aziz
+                </div>
+            </div>
+
+            <div id="slipPagesContainer" style="display: none; flex-direction: column; gap: 2rem; width: 100%;"></div>
+        </main>
+    </div>
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>

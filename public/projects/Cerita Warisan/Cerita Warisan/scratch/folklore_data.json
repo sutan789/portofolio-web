@@ -1,0 +1,227 @@
+[
+    {
+        "title": "Hikayat Meurah Pupok",
+        "region": "Aceh",
+        "category": "Hikayat",
+        "characters": "Sultan Iskandar Muda, Meurah Pupok",
+        "summary": "Kisah ketegasan Sultan Iskandar Muda dalam menegakkan hukum di Kesultanan Aceh, bahkan terhadap putranya sendiri.",
+        "content": "Pada masa kejayaan Kesultanan Aceh Darussalam, Sultan Iskandar Muda dikenal sebagai pemimpin yang adil dan tegas. Putranya, Meurah Pupok, melakukan kesalahan fatal yang melanggar hukum syariat. Meskipun sangat mencintai putranya, Sultan Iskandar Muda tetap menjatuhkan hukuman mati demi tegaknya keadilan. Peristiwa ini melahirkan pepatah Aceh: Mate aneuk meupat jeurat, mate adat pat tamita (Mati anak ada kuburannya, mati adat di mana dicari).",
+        "image_prompt": "A majestic Acehnese Sultan from the 17th century in traditional royal attire, standing in a grand wooden palace, emotional scene, cinematic lighting, historical Indonesian setting."
+    },
+    {
+        "title": "Legenda Danau Toba",
+        "region": "Sumatera Utara",
+        "category": "Legenda",
+        "characters": "Toba, Putri Ikan, Samosir",
+        "summary": "Asal-usul terbentuknya Danau Toba dan Pulau Samosir akibat pelanggaran janji seorang pria kepada istrinya yang merupakan jelmaan ikan.",
+        "content": "Seorang pemuda bernama Toba menangkap ikan emas ajaib yang berubah menjadi wanita cantik. Mereka menikah dengan syarat Toba tidak boleh mengungkit asal-usulnya. Namun, suatu hari Toba marah kepada anaknya, Samosir, dan menyebutnya anak ikan. Langit mendung, hujan lebat turun, dan lembah tersebut tenggelam menjadi danau besar dengan pulau di tengahnya.",
+        "image_prompt": "A giant beautiful golden fish transforming into a beautiful woman in a lush North Sumatran landscape near a river, mystical atmosphere, vibrant colors, traditional Batak house in distance."
+    },
+    {
+        "title": "Malin Kundang",
+        "region": "Sumatera Barat",
+        "category": "Legenda",
+        "characters": "Malin Kundang, Mande Rubayah",
+        "summary": "Kisah seorang anak yang durhaka kepada ibunya setelah sukses merantau, lalu dikutuk menjadi batu.",
+        "content": "Malin Kundang merantau dan menjadi kaya raya. Saat kembali ke kampung halaman, ia malu mengakui ibunya yang miskin di hadapan istrinya. Ibunya yang sakit hati berdoa agar Malin dikutuk. Badai besar datang dan mengubah Malin beserta kapalnya menjadi batu di pinggir pantai Air Manis.",
+        "image_prompt": "A young man turning into stone on a stormy beach, crashing waves, dramatic lightning, ancient wooden ship wreckage, Minangkabau coast, emotional and dark atmosphere."
+    },
+    {
+        "title": "Putri Kaca Mayang",
+        "region": "Riau",
+        "category": "Legenda",
+        "characters": "Putri Kaca Mayang, Raja Gasib, Panglima Gimpam",
+        "summary": "Kisah cinta dan penculikan putri cantik dari Kerajaan Gasib yang memicu peperangan.",
+        "content": "Putri Kaca Mayang adalah putri Raja Gasib yang sangat cantik. Karena menolak lamaran Raja Aceh, Kerajaan Gasib diserang. Sang Putri diculik, namun Panglima Gimpam yang gagah berani berhasil membawanya kembali meskipun sang Putri akhirnya meninggal dalam perjalanan karena sakit.",
+        "image_prompt": "A beautiful princess in Riau traditional dress sitting in a royal gazebo surrounded by rainforest, soft lighting, elegant gold ornaments, serene atmosphere."
+    },
+    {
+        "title": "Putri Tangguk",
+        "region": "Jambi",
+        "category": "Legenda",
+        "characters": "Putri Tangguk, Suami Putri Tangguk",
+        "summary": "Peringatan tentang pentingnya bersyukur dan tidak membuang-buang rezeki, terutama padi.",
+        "content": "Putri Tangguk memiliki sawah yang sangat luas. Karena merasa sudah terlalu kaya, ia membuang-buang padi untuk menutupi jalan yang becek. Akibat kesombongannya, padi-padinya berhenti berbuah dan ia jatuh miskin. Ia baru sadar setelah padi-padi itu memprotes perbuatannya lewat mimpi.",
+        "image_prompt": "A woman in traditional Jambi village attire throwing rice on a muddy path, golden rice fields in the background, mystical divine light, traditional house (Rumah Larik)."
+    },
+    {
+        "title": "Si Pahit Lidah",
+        "region": "Sumatera Selatan",
+        "category": "Legenda",
+        "characters": "Serunting (Si Pahit Lidah), Serunting Sakti",
+        "summary": "Seorang pria sakti yang setiap perkataannya menjadi kenyataan, seringkali mengubah orang atau benda menjadi batu.",
+        "content": "Serunting mendapatkan kesaktian setelah bertapa di bawah pohon bambu. Namun, hatinya sempat pahit karena dikhianati adik iparnya. Kekuatannya membuat apapun yang ia ucapkan menjadi kutukan. Ia berkelana di tanah Sumatera Selatan dan Bengkulu, meninggalkan jejak-jejak batu yang dipercaya sebagai hasil ucapannya.",
+        "image_prompt": "A powerful looking ascetic man with long hair sitting under a giant banyan tree, mystical aura, South Sumatra landscape, ancient ruins in background."
+    },
+    {
+        "title": "Ular N'daung",
+        "region": "Bengkulu",
+        "category": "Dongeng",
+        "characters": "Bungsu, Ular N'daung",
+        "summary": "Kisah pengabdian seorang anak bungsu yang bersedia menikah dengan ular raksasa demi mendapatkan obat untuk ibunya.",
+        "content": "Seorang ibu sakit parah dan hanya bisa sembuh dengan obat dari sarang Ular N'daung. Si Bungsu berani pergi ke sana. Ternyata Ular N'daung adalah pangeran yang dikutuk. Keikhlasan si Bungsu akhirnya mematahkan kutukan tersebut dan mereka hidup bahagia.",
+        "image_prompt": "A brave girl talking to a giant, friendly magical snake inside a glowing crystal cave, mystical light, lush jungle outside, fantasy style."
+    },
+    {
+        "title": "Raden Jambat",
+        "region": "Lampung",
+        "category": "Hikayat",
+        "characters": "Raden Jambat, Putri Betik Hati",
+        "summary": "Petualangan seorang pangeran Lampung mencari cinta dan keadilan.",
+        "content": "Raden Jambat berkelana mencari Putri Betik Hati. Dalam perjalanannya, ia harus menghadapi berbagai rintangan gaib dan musuh-musuh kuat menggunakan kesaktiannya. Cerita ini sarat dengan nilai keberanian dan kesetiaan budaya Lampung.",
+        "image_prompt": "A brave warrior in Lampung traditional attire with a keris, standing on a traditional wooden boat on a wide river, lush tropical background."
+    },
+    {
+        "title": "Si Pitung",
+        "region": "Jakarta",
+        "category": "Legenda",
+        "characters": "Si Pitung, Haji Naipin, Schout Heyne Scott",
+        "summary": "Pahlawan rakyat Betawi yang melawan penindasan penjajah Belanda.",
+        "content": "Si Pitung adalah pemuda saleh yang belajar silat dari Haji Naipin. Ia merampok rumah-rumah tuan tanah kaya dan kompeni Belanda untuk dibagikan kepada rakyat miskin. Ia dikenal memiliki ilmu kebal yang membuatnya sangat sulit ditangkap oleh tentara Belanda.",
+        "image_prompt": "A Betawi hero in red traditional silat clothes, performing a martial arts stance in a colonial-era Jakarta market, dynamic pose, historical setting."
+    },
+    {
+        "title": "Sangkuriang",
+        "region": "Jawa Barat",
+        "category": "Legenda",
+        "characters": "Sangkuriang, Dayang Sumbi, Tumang",
+        "summary": "Asal-usul Gunung Tangkuban Perahu yang tercipta dari kemarahan seorang pemuda yang gagal menikahi ibunya sendiri.",
+        "content": "Sangkuriang jatuh cinta pada Dayang Sumbi tanpa tahu bahwa itu ibunya. Dayang Sumbi memberi syarat mustahil: membuat danau dan perahu dalam satu malam. Hampir berhasil, Dayang Sumbi melakukan tipu muslihat. Sangkuriang marah dan menendang perahunya hingga terbalik menjadi gunung.",
+        "image_prompt": "A strong man kicking a huge wooden boat in a misty mountain valley, dramatic sunrise, Sundanese landscape, ancient mythical vibe."
+    },
+    {
+        "title": "Roro Jonggrang",
+        "region": "Jawa Tengah",
+        "category": "Legenda",
+        "characters": "Bandung Bondowoso, Roro Jonggrang",
+        "summary": "Pembangunan seribu candi dalam satu malam yang berakhir dengan kutukan sang putri menjadi arca terakhir.",
+        "content": "Bandung Bondowoso ingin menikahi Roro Jonggrang. Sang putri meminta seribu candi dibangun dalam semalam. Dengan bantuan jin, Bandung hampir selesai. Roro Jonggrang menyuruh warga memukul lesung agar ayam berkokok. Bandung yang tertipu hanya menyelesaikan 999 candi dan mengutuk Roro Jonggrang menjadi candi ke-1000.",
+        "image_prompt": "Beautiful princess turning into a stone statue inside a majestic stone temple, surrounded by spirits and jinns, moonlight, dramatic shadows, Prambanan style."
+    },
+    {
+        "title": "Asal Usul Surabaya",
+        "region": "Jawa Timur",
+        "category": "Legenda",
+        "characters": "Sura (Hiu), Baya (Buaya)",
+        "summary": "Pertarungan hebat antara ikan hiu dan buaya yang memperebutkan wilayah kekuasaan.",
+        "content": "Sura (hiu) dan Baya (buaya) sering bertengkar karena berebut makanan. Mereka membuat kesepakatan pembagian wilayah: laut untuk Sura, darat untuk Baya. Namun Sura melanggar janji dengan mencari mangsa di muara sungai. Pertarungan dahsyat pun terjadi hingga air memerah oleh darah.",
+        "image_prompt": "Epic battle between a giant white shark and a giant crocodile in a river delta, splashing water, dramatic sunset, symbolic and powerful."
+    },
+    {
+        "title": "Jayaprana dan Layonsari",
+        "region": "Bali",
+        "category": "Legenda",
+        "characters": "Jayaprana, Layonsari, Raja Kalianget",
+        "summary": "Kisah cinta tragis sepasang kekasih yang dipisahkan oleh keserakahan seorang raja.",
+        "content": "Jayaprana adalah abdi setia raja yang sangat tampan. Ia menikah dengan Layonsari yang jelita. Sang raja iri dan ingin memiliki Layonsari. Ia memerintahkan Jayaprana pergi berperang lalu membunuhnya di hutan secara licik. Layonsari yang setia memilih mengakhiri hidupnya menyusul suaminya.",
+        "image_prompt": "A beautiful Balinese couple in traditional wedding attire standing in a temple gate (Pura), romantic and tragic atmosphere, lush Bali nature."
+    },
+    {
+        "title": "Putri Mandalika",
+        "region": "NTB",
+        "category": "Legenda",
+        "characters": "Putri Mandalika",
+        "summary": "Seorang putri cantik yang mengorbankan dirinya terjun ke laut demi mencegah peperangan antar pelamar.",
+        "content": "Putri Mandalika diperebutkan oleh banyak pangeran. Ia tidak ingin melihat rakyatnya berperang demi dirinya. Setelah bersemedi, ia mengundang semua pelamar ke pantai Kuta Lombok dan terjun ke laut. Ia dipercaya berubah menjadi cacing warna-warni yang disebut Nyale.",
+        "image_prompt": "A beautiful princess in Sasak traditional clothing standing on a cliff edge at sunrise, turquoise sea below, dramatic and heroic mood."
+    },
+    {
+        "title": "Suri Ikun dan Dua Ekor Burung",
+        "region": "NTT",
+        "category": "Dongeng",
+        "characters": "Suri Ikun, Burung Elang, Hantu",
+        "summary": "Petualangan Suri Ikun yang terjebak di gua hantu dan diselamatkan oleh burung-burung perkasa.",
+        "content": "Suri Ikun dibuang oleh saudara-saudaranya ke hutan dan tertangkap oleh hantu. Ia berhasil melarikan diri dengan bantuan dua ekor burung elang besar yang ia beri makan. Burung-burung itu membawanya terbang pulang dan membantunya mendapatkan keadilan.",
+        "image_prompt": "A young boy flying on the back of a giant eagle over the rugged savanna mountains of NTT, bright daylight, cinematic view."
+    },
+    {
+        "title": "Asal Usul Sungai Kawat",
+        "region": "Kalimantan Barat",
+        "category": "Legenda",
+        "characters": "Penduduk Desa, Tali Kawat Emas",
+        "summary": "Kisah tentang keserakahan manusia yang menyebabkan hilangnya benda misterius di sungai.",
+        "content": "Dahulu di Sintang, terdapat kawat emas misterius yang muncul dari dasar sungai. Warga boleh mengambilnya secukupnya. Namun, ada yang serakah menarik kawat itu terlalu panjang hingga akhirnya putus dan tenggelam selamanya. Sejak itu sungai tersebut dinamakan Sungai Kawat.",
+        "image_prompt": "A mysterious glowing golden wire emerging from a wide muddy river, people on wooden boats trying to pull it, misty rainforest background."
+    },
+    {
+        "title": "Datu Mabrur dan Ikan Todak",
+        "region": "Kalimantan Selatan",
+        "category": "Legenda",
+        "characters": "Datu Mabrur, Raja Ikan Todak",
+        "summary": "Asal-usul Pulau Laut yang tercipta dari bantuan ribuan ikan todak kepada seorang petapa sakti.",
+        "content": "Datu Mabrur bertapa di tengah laut agar dikaruniai sebuah pulau untuk anak cucunya. Ia diserang oleh ribuan ikan todak. Setelah berhasil mengalahkan rajanya, ikan todak tersebut mengabdi dan mengangkut daratan dari dasar laut membentuk Pulau Laut yang kini dikenal sebagai Kotabaru.",
+        "image_prompt": "A wise man meditating on a rock in the middle of a swirling ocean, surrounded by jumping swordfish (ikan todak), dramatic waves, mystical atmosphere."
+    },
+    {
+        "title": "Pesut Mahakam",
+        "region": "Kalimantan Timur",
+        "category": "Legenda",
+        "characters": "Dua Bersaudara, Ayah, Ibu Tiri",
+        "summary": "Dua anak malang yang berubah menjadi lumba-lumba air tawar setelah kepanasan memakan bubur panas.",
+        "content": "Dua anak kecil ditelantarkan oleh ibu tiri mereka. Saat kelaparan, mereka memakan bubur yang sangat panas hingga melompat ke sungai Mahakam untuk mendinginkan diri. Mereka pun berubah menjadi Pesut (lumba-lumba air tawar) yang hingga kini masih sering terlihat di sungai tersebut.",
+        "image_prompt": "Two unique freshwater dolphins swimming in a wide calm river with traditional wooden houses on stilts in the background, warm sunset light."
+    },
+    {
+        "title": "Mamanua dan Lumimuut",
+        "region": "Sulawesi Utara",
+        "category": "Mitos",
+        "characters": "Mamanua, Lumimuut",
+        "summary": "Legenda tentang leluhur suku Minahasa yang lahir dari batu dan dewa.",
+        "content": "Lumimuut adalah putri yang lahir dari batu yang disinari matahari. Ia menikah dengan Mamanua, sang dewa matahari. Kisah mereka adalah fondasi dari garis keturunan dan budaya masyarakat Minahasa di Sulawesi Utara.",
+        "image_prompt": "A divine woman and a celestial warrior standing on the peak of a volcano, mystical clouds, ancient Minahasa symbols, epic and bright."
+    },
+    {
+        "title": "Sawerigading",
+        "region": "Sulawesi Selatan",
+        "category": "Hikayat",
+        "characters": "Sawerigading, We Tenriabeng",
+        "summary": "Pangeran legendaris dari Bugis yang berkelana ke seluruh dunia dengan kapal kayu raksasa.",
+        "content": "Sawerigading adalah tokoh sentral dalam I La Galigo. Ia adalah pangeran yang gagah berani namun dilarang menikahi saudara kembarnya sendiri. Ia pun menebang pohon raksasa untuk membuat kapal pinisi dan berlayar menjelajahi nusantara hingga ke Tiongkok.",
+        "image_prompt": "A majestic classic Bugis Pinisi ship sailing on a vast ocean with a noble warrior standing on the deck, historical and grand."
+    },
+    {
+        "title": "Oheo",
+        "region": "Sulawesi Tenggara",
+        "category": "Dongeng",
+        "characters": "Oheo, Bidadari",
+        "summary": "Kisah seorang pria yang mencuri selendang bidadari agar bisa menikahinya.",
+        "content": "Oheo melihat tujuh bidadari mandi di sungai. Ia mencuri salah satu selendang bidadari bernama Anai. Mereka menikah dan memiliki anak. Namun akhirnya sang bidadari menemukan selendangnya dan kembali ke langit, meninggalkan Oheo yang harus berjuang menyusulnya dengan bantuan tumpukan tebu.",
+        "image_prompt": "Seven beautiful fairies with flowing scarves bathing in a hidden jungle waterfall, a man hiding behind bushes watching them, magical and ethereal."
+    },
+    {
+        "title": "Nenek Luhu",
+        "region": "Maluku",
+        "category": "Legenda",
+        "characters": "Nenek Luhu, Raja Luhu",
+        "summary": "Kisah tragis putri Raja Luhu yang menghilang saat kerajaannya diserang.",
+        "content": "Nenek Luhu sebenarnya adalah putri cantik yang melarikan diri saat negerinya dihancurkan penjajah. Ia dipercaya memiliki kekuatan gaib dan sering muncul saat hujan panas. Cerita ini sangat populer di Ambon sebagai pengingat sejarah masa lalu.",
+        "image_prompt": "A spectral elderly woman in traditional Ambonese cloth walking through a misty forest during a 'hujan panas' (sun shower), mysterious and slightly eerie."
+    },
+    {
+        "title": "Asal Usul Talaga Biru",
+        "region": "Maluku Utara",
+        "category": "Legenda",
+        "characters": "Sepasang Kekasih",
+        "summary": "Terbentuknya telaga dari air mata seorang wanita yang menangisi kekasihnya.",
+        "content": "Di Halmahera, seorang wanita menangis terus menerus karena mengira kekasihnya tewas dalam peperangan. Air matanya mengumpul membentuk sebuah telaga yang jernih dan berwarna biru indah. Telaga ini kini menjadi objek wisata terkenal di Galela.",
+        "image_prompt": "A crystal clear blue lake in a tropical island setting, surrounded by coconut trees, volcanic mountains in the distance, serene and beautiful."
+    },
+    {
+        "title": "Biwar Penakluk Naga",
+        "region": "Papua",
+        "category": "Legenda",
+        "characters": "Biwar, Sang Naga",
+        "summary": "Pahlawan muda Papua yang membalaskan dendam keluarganya dari gangguan naga raksasa.",
+        "content": "Biwar tumbuh besar bersama ibunya setelah ayah dan pamannya dimangsa naga. Ia belajar berburu dan membuat senjata tajam. Dengan keberaniannya, ia menghadapi naga raksasa di sungai dan berhasil mengalahkannya, membawa kedamaian bagi sukunya.",
+        "image_prompt": "A brave young Papuan warrior with traditional face paint and a spear, fighting a giant water dragon in a dense swamp forest, action-packed."
+    },
+    {
+        "title": "Asal Usul Burung Cendrawasih",
+        "region": "Papua Barat",
+        "category": "Legenda",
+        "characters": "Kweeya, Ibu, Saudara-saudara Kweeya",
+        "summary": "Kisah seorang anak yang dianiaya saudara-saudaranya lalu berubah menjadi burung surga.",
+        "content": "Kweeya sering disiksa oleh saudara-saudaranya. Karena sedih, ia menancapkan kulit kayu ke tubuhnya dan berubah menjadi burung yang sangat indah. Saudara-saudaranya menyesal namun sudah terlambat. Kweeya terbang menjauh sebagai Burung Cendrawasih.",
+        "image_prompt": "A magical transformation of a boy into a stunning bird of paradise (Cendrawasih) in the heart of a Papua jungle, light rays shining through trees."
+    }
+]

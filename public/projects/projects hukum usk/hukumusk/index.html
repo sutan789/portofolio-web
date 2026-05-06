@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DPM FH USK – Dewan Perwakilan Mahasiswa Fakultas Hukum Universitas Syiah Kuala. Bersatu, Menuju Perubahan.">
+  <title>DPM FH USK – Dewan Perwakilan Mahasiswa Fakultas Hukum</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ── HOME-SPECIFIC STYLES ── */
+    .org-journey { background: var(--bg-white); }
+    .org-journey-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
+    .org-journey-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--maroon-dark);
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .org-journey-img .img-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(145deg, var(--maroon-dark), var(--maroon));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      color: rgba(255,255,255,0.15);
+    }
+
+    .function-item {
+      display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start;
+    }
+    .function-num {
+      width: 32px; height: 32px;
+      border-radius: 50%; background: var(--maroon);
+      color: #fff; font-size: 0.8rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .function-title { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 0.2rem; }
+    .function-desc  { font-size: 0.85rem; color: var(--text-gray); }
+
+    /* Vision Mission */
+    .vm-section { background: var(--bg-section); }
+
+    /* Leadership */
+    .leader-section { background: var(--bg-white); }
+    
+    /* 4-card leader grid (matches reference) */
+    .leader-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .leader-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--maroon-dark);
+      transition: var(--transition);
+    }
+    .leader-card:hover .leader-card-img { transform: scale(1.04); filter: grayscale(0%) brightness(0.8); }
+    .leader-card-img {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; color: rgba(255,255,255,0.12);
+      transition: var(--transition);
+      filter: grayscale(15%);
+    }
+    .leader-card-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(74,14,31,0.97) 0%, rgba(74,14,31,0.5) 50%, transparent 100%);
+      padding: 2.5rem 1rem 1rem;
+    }
+    .leader-card-overlay .role {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.25rem; display: block;
+    }
+    .leader-card-overlay .name {
+      font-family: var(--font-serif); font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 700; color: #fff; line-height: 1.2;
+    }
+    .leader-card-overlay .dept {
+      font-size: 0.72rem; color: rgba(255,255,255,0.6); margin-top: 0.15rem;
+    }
+
+    /* Roadmap */
+    .roadmap-section { background: var(--bg-section); }
+    .roadmap-inner {
+      display: grid; grid-template-columns: 1fr; gap: 3rem;
+    }
+
+    /* CTA Banner */
+    .cta-section {
+      background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 100%);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .cta-section h2 { color: #fff; margin-bottom: 1rem; }
+    .cta-section p { color: rgba(255,255,255,0.75); max-width: 500px; margin: 0 auto 2rem; }
+
+    @media (min-width: 768px) {
+      .org-journey-grid { grid-template-columns: 1fr 1fr; }
+      .leader-cards-grid { grid-template-columns: repeat(4, 1fr); }
+      .roadmap-inner { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== NAVBAR ==================== -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container navbar-inner">
+    <a href="index.html" class="navbar-logo" aria-label="DPM FH USK Home">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7v2h20V7L12 2zm-8 9v6H2v2h20v-2h-2v-6h-2v6h-2v-6h-2v6h-2v-6H8v6H6v-6H4z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-text">DPM FH USK</div>
+        <div class="logo-sub">Fakultas Hukum · Universitas Syiah Kuala</div>
+      </div>
+    </a>
+
+    <div class="navbar-nav" role="menubar">
+      <a href="index.html" role="menuitem">Beranda</a>
+      <a href="about.html" role="menuitem">Tentang Kami</a>
+      <a href="tugas-fungsi.html" role="menuitem">Tugas & Fungsi</a>
+      <a href="struktur.html" role="menuitem">Kepengurusan</a>
+      <a href="berita.html" role="menuitem">Berita</a>
+      <a href="kontak.html" role="menuitem">Kontak</a>
+    </div>
+
+    <div class="navbar-actions">
+      <a href="kontak.html" class="btn-cta" id="joinCouncilBtn">Bergabung</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <a href="index.html">🏠 Beranda</a>
+  <a href="about.html">📋 Tentang Kami</a>
+  <a href="tugas-fungsi.html">⚖️ Tugas & Fungsi</a>
+  <a href="struktur.html">👥 Kepengurusan</a>
+  <a href="berita.html">📰 Berita</a>
+  <a href="kontak.html">📞 Kontak</a>
+  <a href="kontak.html" class="mobile-cta">Bergabung dengan Dewan →</a>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="hero" aria-label="Hero section">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-pattern"></div>
+
+  <!-- Decorative building silhouette -->
+  <div style="position:absolute;inset:0;z-index:1;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;pointer-events:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMax meet"
+         style="width:100%;max-width:900px;opacity:0.08;">
+      <rect x="50" y="200" width="700" height="200" fill="white"/>
+      <rect x="100" y="150" width="600" height="60" fill="white"/>
+      <rect x="150" y="100" width="500" height="60" fill="white"/>
+      <rect x="200" y="60"  width="400" height="50"  fill="white"/>
+      <rect x="290" y="20"  width="220" height="45"  fill="white"/>
+      <rect x="370" y="0"   width="60"  height="25"  fill="white"/>
+      <!-- columns -->
+      <rect x="120" y="210" width="20" height="190" fill="rgba(0,0,0,0.2)"/>
+      <rect x="200" y="210" width="20" height="190" fill="rgba(0,0,0,0.2)"/>
+      <rect x="280" y="210" width="20" height="190" fill="rgba(0,0,0,0.2)"/>
+      <rect x="380" y="210" width="20" height="190" fill="rgba(0,0,0,0.2)"/>
+      <rect x="500" y="210" width="20" height="190" fill="rgba(0,0,0,0.2)"/>
+      <rect x="580" y="210" width="20" height="190" fill="rgba(0,0,0,0.2)"/>
+      <rect x="660" y="210" width="20" height="190" fill="rgba(0,0,0,0.2)"/>
+    </svg>
+  </div>
+
+  <div class="container hero-content" style="position:relative;z-index:2;">
+    <span class="badge" style="border-color:rgba(201,168,76,0.5)">Dewan Perwakilan Mahasiswa</span>
+    <h1>
+      Fakultas Hukum<br>
+      Universitas Syiah Kuala<br>
+      <em>Bersatu, Menuju Perubahan!</em>
+    </h1>
+    <p class="subtitle">
+      Mewujudkan Tata Kelola Lembaga Mahasiswa yang Transparan dan Akuntabel.
+      Menjadi suara mahasiswa Fakultas Hukum yang aspiratif dan berdampak.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+      <a href="tugas-fungsi.html" class="btn btn-gold" id="exploreMandateBtn">Lihat Tugas & Fungsi</a>
+      <a href="kontak.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5)" id="contactHeroBtn">Hubungi Kami</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num" data-count="12">0</span>
+        <span class="stat-label">Anggota Aktif</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="4">0</span>
+        <span class="stat-label">Komisi</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="24">0</span>
+        <span class="stat-label">Program Kerja</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="2024">0</span>
+        <span class="stat-label">Periode</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- ==================== ORGANIZATIONAL JOURNEY ==================== -->
+<section class="section org-journey" id="journey">
+  <div class="container">
+    <div class="org-journey-grid">
+
+      <!-- Text Content -->
+      <div>
+        <span class="section-tag">DPM · Januari 2024</span>
+        <h2 style="color:var(--maroon-dark);margin-bottom:1rem;" class="fade-in">
+          Perjalanan Organisasi Kami
+        </h2>
+        <p class="fade-in" style="margin-bottom:2rem;">
+          DPM FH USK 2024 adalah lembaga legislatif bagi BEM Fakultas Hukum USK yang berperan
+          sebagai pengawas pelaksanaan kebijakan, aspirasi, dan pengembangan mahasiswa hukum.
+        </p>
+
+        <div class="function-item fade-in">
+          <div class="function-num">1</div>
+          <div>
+            <div class="function-title">🔵 Fungsi Legislasi</div>
+            <div class="function-desc">Menyusun undang-undang yang mengikat mahasiswa dan lembaga, sesuai konstitusi.</div>
+          </div>
+        </div>
+        <div class="function-item fade-in">
+          <div class="function-num">2</div>
+          <div>
+            <div class="function-title">🟡 Fungsi Anggaran</div>
+            <div class="function-desc">Menyetujui dan mengawasi anggaran kegiatan BEM FH USK secara transparan.</div>
+          </div>
+        </div>
+        <div class="function-item fade-in">
+          <div class="function-num">3</div>
+          <div>
+            <div class="function-title">🔴 Fungsi Pengawasan</div>
+            <div class="function-desc">Memantau dan mengevaluasi jalannya kegiatan lembaga kemahasiswaan.</div>
+          </div>
+        </div>
+
+        <a href="about.html" class="btn btn-primary" id="learnMoreBtn" style="margin-top:1rem;">
+          Selengkapnya →
+        </a>
+      </div>
+
+      <!-- Image + Quote -->
+      <div>
+        <div class="org-journey-img fade-in" style="margin-bottom:1.25rem;">
+          <div class="img-placeholder"><i data-lucide="scale" style="width: 80px; height: 80px; stroke-width: 1;"></i></div>
+        </div>
+        <div class="quote-card fade-in">
+          <blockquote>"Justice must walk through the voice of the students."</blockquote>
+          <cite>— Ketua DPM FH USK 2024</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== VISION & MISSION ==================== -->
+<section class="section vm-section" id="visi-misi">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Landasan Organisasi</span>
+      <h2 class="fade-in">Visi & Misi</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid-2 fade-in" style="gap:1.5rem;">
+      <!-- Vision -->
+      <div class="vm-box vision">
+        <div class="icon-box"><i data-lucide="eye"></i></div>
+        <h3 style="color:var(--maroon-dark);margin-bottom:0.75rem;">Visi Kami</h3>
+        <p>
+          Terwujudnya DPM FH USK yang transparan, akuntabel, dan representatif sebagai
+          lembaga legislatif mahasiswa yang credibel dan berintegritas tinggi di Universitas Syiah Kuala.
+        </p>
+      </div>
+
+      <!-- Mission -->
+      <div class="vm-box mission">
+        <div class="icon-box"><i data-lucide="target"></i></div>
+        <h3>Misi Kami</h3>
+        <ul>
+          <li>Menyusun regulasi mahasiswa yang responsif terhadap kebutuhan mahasiswa FH USK.</li>
+          <li>Mengawasi kinerja BEM FH USK secara berkala dan berintegritas.</li>
+          <li>Membuka ruang aspirasi mahasiswa yang inklusif dan partisipatif.</li>
+          <li>Membangun kerjasama antar lembaga kemahasiswaan yang harmonis.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== LEADERSHIP STRUCTURE ==================== -->
+<section class="section leader-section" id="kepemimpinan">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Struktur Kepengurusan</span>
+      <h2 class="fade-in">Leadership Structure</h2>
+      <p class="fade-in">Individu berdedikasi yang mengemban amanat mahasiswa FH USK.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <!-- 4-card executive grid matching reference design -->
+    <div class="leader-cards-grid fade-in">
+      <!-- Ahmad Farid -->
+      <div class="leader-card" style="background:linear-gradient(145deg,#2D0810,#5C1020);">
+        <div class="leader-card-img"><i data-lucide="gavel"></i></div>
+        <div class="leader-card-overlay">
+          <span class="role">Sekretaris Jenderal</span>
+          <div class="name">Ahmad Farid</div>
+          <div class="dept">Direktur Legal, Dewan Legislatif</div>
+        </div>
+      </div>
+      <!-- Siti Rahimah -->
+      <div class="leader-card" style="background:linear-gradient(145deg,#3A0A18,#7B1A2E);">
+        <div class="leader-card-img"><i data-lucide="briefcase"></i></div>
+        <div class="leader-card-overlay">
+          <span class="role">Bendahara Umum</span>
+          <div class="name">Siti Rahimah</div>
+          <div class="dept">Komisi Anggaran, Sekretariat</div>
+        </div>
+      </div>
+      <!-- Rian Pratama -->
+      <div class="leader-card" style="background:linear-gradient(145deg,#4A0E1F,#9B2335);">
+        <div class="leader-card-img"><i data-lucide="users"></i></div>
+        <div class="leader-card-overlay">
+          <span class="role">Wakil Ketua</span>
+          <div class="name">Jeremi Marbun</div>
+          <div class="dept">Koordinator Komisi-Komisi</div>
+        </div>
+      </div>
+      <!-- Lima Safira -->
+      <div class="leader-card" style="background:linear-gradient(145deg,#3D0A1A,#7B1A2E);">
+        <div class="leader-card-img"><i data-lucide="user-plus"></i></div>
+        <div class="leader-card-overlay">
+          <span class="role">Ketua DPM</span>
+          <div class="name">Nazatul Hisar</div>
+          <div class="dept">Pimpinan Umum DPM FH USK 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commissions row -->
+    <h3 style="font-family:var(--font-serif);color:var(--maroon-dark);margin-bottom:1.25rem;font-style:italic;" class="fade-in">— Komisi</h3>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;" class="fade-in" id="commGrid">
+      <div class="card" style="display:flex;align-items:center;gap:1rem;padding:1rem;">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--maroon-dark),var(--maroon));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;">👤</div>
+        <div><div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--maroon);margin-bottom:0.1rem;">Komisi I</div><div style="font-weight:600;font-size:0.9rem;">Budi Santoso</div><div style="font-size:0.75rem;color:var(--text-gray);">Urusan Internal</div></div>
+      </div>
+      <div class="card" style="display:flex;align-items:center;gap:1rem;padding:1rem;">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#5C0F2A,var(--maroon));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;">👤</div>
+        <div><div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--maroon);margin-bottom:0.1rem;">Komisi II</div><div style="font-weight:600;font-size:0.9rem;">Dina Amalia</div><div style="font-size:0.75rem;color:var(--text-gray);">Advokasi & Aspirasi</div></div>
+      </div>
+      <div class="card" style="display:flex;align-items:center;gap:1rem;padding:1rem;">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#3D0A1A,var(--maroon));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;">👤</div>
+        <div><div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--maroon);margin-bottom:0.1rem;">Komisi III</div><div style="font-weight:600;font-size:0.9rem;">Rizky Pratama</div><div style="font-size:0.75rem;color:var(--text-gray);">Legislasi & Hukum</div></div>
+      </div>
+      <div class="card" style="display:flex;align-items:center;gap:1rem;padding:1rem;">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#4A0E1F,#9B2335);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;">👤</div>
+        <div><div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--maroon);margin-bottom:0.1rem;">Komisi IV</div><div style="font-weight:600;font-size:0.9rem;">Laila Fitri</div><div style="font-size:0.75rem;color:var(--text-gray);">Hubungan Masyarakat</div></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="struktur.html" class="btn btn-outline" id="seeAllMembersBtn">Lihat Semua Anggota →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GOVERNANCE ROADMAP ==================== -->
+<section class="section roadmap-section" id="roadmap">
+  <div class="container">
+    <div class="roadmap-inner">
+
+      <div>
+        <span class="section-tag">Program Kerja 2024</span>
+        <h2 style="color:var(--maroon-dark);margin-bottom:1.5rem;" class="fade-in">Governance Roadmap</h2>
+
+        <div class="timeline fade-in">
+          <div class="timeline-item">
+            <div class="timeline-dot done"></div>
+            <div class="timeline-date">Jan 2024</div>
+            <div class="timeline-title">Sidang Paripurna Pembukaan</div>
+            <div class="timeline-desc">Pelantikan anggota DPM FH USK dan penetapan agenda legislasi periode 2024.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot done"></div>
+            <div class="timeline-date">Feb 2024</div>
+            <div class="timeline-title">Rapat Dengar Pendapat Pertama</div>
+            <div class="timeline-desc">Menyerap aspirasi mahasiswa FH USK lintas angkatan sebagai bahan legislasi.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot active"></div>
+            <div class="timeline-date">Mar – Apr 2024</div>
+            <div class="timeline-title">Audit Keuangan Tengah Tahun</div>
+            <div class="timeline-desc">Evaluasi pelaksanaan program kerja BEM FH USK dan pertanggungjawaban anggaran.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Jun 2024</div>
+            <div class="timeline-title">Pengesahan UU Mahasiswa</div>
+            <div class="timeline-desc">Sidang pleno penetapan Undang-Undang Pemira dan peraturan organisasi.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Des 2024</div>
+            <div class="timeline-title">Sidang Pertanggungjawaban Akhir</div>
+            <div class="timeline-desc">Laporan akhir kinerja BEM dan persiapan serah terima jabatan periode berikutnya.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats column -->
+      <div class="fade-in">
+        <h3 style="font-family:var(--font-serif);color:var(--maroon-dark);margin-bottom:1.5rem;">Capaian Legislasi</h3>
+        <div class="progress-bar-wrap" style="margin-bottom:1.5rem;">
+          <div class="progress-bar-label">
+            <span>Penyusunan UU Mahasiswa</span>
+            <span>85%</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" data-width="85"></div>
+          </div>
+        </div>
+        <div class="progress-bar-wrap" style="margin-bottom:1.5rem;">
+          <div class="progress-bar-label">
+            <span>Pengawasan Program BEM</span>
+            <span>70%</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" data-width="70"></div>
+          </div>
+        </div>
+        <div class="progress-bar-wrap" style="margin-bottom:1.5rem;">
+          <div class="progress-bar-label">
+            <span>Aspirasi Mahasiswa Tersalurkan</span>
+            <span>60%</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" data-width="60"></div>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:2rem;gap:1rem;">
+          <div class="stat-box">
+            <span class="num" data-count="12">0</span>
+            <span class="lbl">Draft Regulasi</span>
+          </div>
+          <div class="stat-box">
+            <span class="num" data-count="4">0</span>
+            <span class="lbl">Sudah Disahkan</span>
+          </div>
+          <div class="stat-box">
+            <span class="num" data-count="8">0</span>
+            <span class="lbl">Rapat Pleno</span>
+          </div>
+          <div class="stat-box">
+            <span class="num" data-count="200">0</span>
+            <span class="lbl">Aspirasi Masuk</span>
+          </div>
+        </div>
+      </div>
+    </div><!-- end roadmap-inner -->
+  </div>
+</section>
+
+<!-- ==================== CTA BANNER ==================== -->
+<section class="cta-section" aria-label="Call to action">
+  <div class="container">
+    <h2 class="fade-in">Suaramu, Kekuatan Kami</h2>
+    <p class="fade-in">Sampaikan aspirasi, masukan, dan pertanyaan kamu kepada DPM FH USK. Kita membangun bersama!</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;" class="fade-in">
+      <a href="kontak.html" class="btn btn-gold" id="ctaContactBtn">Sampaikan Aspirasi</a>
+      <a href="berita.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);" id="ctaNewsBtn">Baca Berita</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">DPM FH USK</div>
+        <p class="footer-desc">
+          Dewan Perwakilan Mahasiswa Fakultas Hukum Universitas Syiah Kuala.<br>
+          Toward Judicial Excellence & Modern Governance.
+        </p>
+        <div class="social-links" style="margin-top:1.25rem;">
+          <a href="#" class="social-link" id="instagramLink">📷 Instagram</a>
+          <a href="#" class="social-link" id="linkedinLink">💼 LinkedIn</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Navigasi</div>
+        <div class="footer-links">
+          <a href="index.html">Beranda</a>
+          <a href="about.html">Tentang Kami</a>
+          <a href="tugas-fungsi.html">Tugas & Fungsi</a>
+          <a href="struktur.html">Kepengurusan</a>
+          <a href="berita.html">Berita</a>
+          <a href="kontak.html">Kontak</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Legal</div>
+        <div class="footer-links">
+          <a href="#">Kebijakan Privasi</a>
+          <a href="#">Ketentuan Layanan</a>
+          <a href="#">Arsip Legislasi</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Kontak Cepat</div>
+        <div class="footer-links">
+          <a href="mailto:dpmhukum@usk.ac.id">dpmhukum@usk.ac.id</a>
+          <a href="#">Royan (0855-7881-003)</a>
+          <a href="kontak.html">Kirim Pesan</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2024 DPM FH USK. Toward Judicial Excellence.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Kebijakan Privasi</a>
+        <a href="#">Ketentuan Layanan</a>
+        <a href="#">Portal Fakultas</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top -->
+<button id="scrollTop" aria-label="Scroll to top"><i data-lucide="arrow-up"></i></button>
+
+<script src="js/main.js"></script>
+<script>
+  // Initialize Lucide icons
+  lucide.createIcons();
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{% extends 'registration/base_auth.html' %}
+
+{% block title %}Masuk{% endblock %}
+
+{% block auth_quote %}
+"Setiap cerita adalah <span>jendela</span> menuju jiwa leluhur yang tak pernah padam."
+{% endblock %}
+
+{% block auth_footer_text %}
+Kurasinya dimulai di sini
+{% endblock %}
+
+{% block auth_title %}Selamat Datang{% endblock %}
+
+{% block auth_subtitle %}Masuk untuk menjelajahi warisan nusantara{% endblock %}
+
+{% block auth_content %}
+{% if form.errors %}
+<div class="alert alert-error">
+    <i class="fas fa-exclamation-circle"></i>
+    Username atau kata sandi tidak valid. Silakan coba lagi.
+</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+
+    <div class="auth-form-group">
+        <label for="id_username">Username</label>
+        <input type="text" name="username" id="id_username" class="auth-input" placeholder="Masukkan username kamu" autofocus required>
+    </div>
+    <div class="auth-form-group">
+        <label for="id_password">Kata Sandi</label>
+        <input type="password" name="password" id="id_password" class="auth-input" placeholder="••••••••" required>
+    </div>
+
+    <div class="auth-actions">
+        <label>
+            <input type="checkbox" name="remember_me"> Ingat saya
+        </label>
+        <a href="#">Lupa Sandi?</a>
+    </div>
+
+    <button type="submit" class="btn-premium" style="width: 100%; padding: 18px;">
+        <i class="fas fa-sign-in-alt"></i> Masuk ke Arsip
+    </button>
+</form>
+
+<div class="register-link">
+    Belum punya akun? <a href="{% url 'folklore:register' %}">Daftar sekarang</a>
+</div>
+{% endblock %}

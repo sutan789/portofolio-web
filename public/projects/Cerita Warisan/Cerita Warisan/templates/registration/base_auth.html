@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - Cerita Warisan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}?v=1.4">
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="auth-page">
+    <div class="auth-bg-pattern"></div>
+    <i class="fas fa-feather-alt auth-ornament"></i>
+
+    <div class="auth-card">
+        <!-- Hero Side -->
+        <div class="auth-hero">
+            <div class="brand">
+                Cerita Warisan
+                <small>The Living Archive</small>
+            </div>
+            <div class="quote">
+                {% block auth_quote %}{% endblock %}
+            </div>
+            <div class="auth-hero-footer">
+                {% block auth_footer_text %}{% endblock %}
+            </div>
+        </div>
+
+        <!-- Form Side -->
+        <div class="auth-form-side">
+            <h2>{% block auth_title %}{% endblock %}</h2>
+            <p class="sub">{% block auth_subtitle %}{% endblock %}</p>
+
+            {% if messages %}
+                <div class="alert-container">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            <i class="fas {% if message.tags == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %}"></i>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% block auth_content %}{% endblock %}
+        </div>
+    </div>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,818 @@
+{% extends 'base.html' %}
+{% block title %}{{ story.title }} - Pustaka Digital{% endblock %}
+{% block body_class %}reader-page{% endblock %}
+
+{% block content %}
+<!-- ===== TOP READING PROGRESS BAR ===== -->
+<div id="readProgressBar"></div>
+
+<!-- ===== READER WRAPPER ===== -->
+<div class="rd-wrapper">
+
+  <!-- ===== COVER HERO ===== -->
+  <div class="rd-hero">
+    {% if story.cover_image %}
+      <img src="{{ story.cover_image.url }}" alt="{{ story.title }}" class="rd-hero-img">
+    {% else %}
+      <div class="rd-hero-placeholder">
+        <i class="fas fa-scroll"></i>
+      </div>
+    {% endif %}
+    <div class="rd-hero-overlay"></div>
+    <div class="rd-hero-content">
+      <button class="rd-back-btn" onclick="if(document.referrer) window.history.back(); else window.location.href='{% url 'folklore:library' %}';">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <span class="rd-hero-badge">{{ story.category.name }}</span>
+      <h1 class="rd-hero-title">{{ story.title }}</h1>
+      <div class="rd-hero-meta">
+        <span><i class="fas fa-map-marker-alt"></i> {{ story.region.name }}</span>
+        <span><i class="fas fa-clock"></i> <span id="readingTimeVal">...</span> menit baca</span>
+        <span><i class="fas fa-star"></i> {{ avg_rating|default:"4.5"|floatformat:1 }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FLOATING CONTROLS BAR ===== -->
+  <div class="rd-controls" id="rdControls">
+    <div class="rd-controls-inner">
+      <!-- Font Size -->
+      <div class="rd-ctrl-group">
+        <button class="rd-ctrl-btn" id="fontDecrease" aria-label="Kecilkan teks">
+          <span style="font-size:0.75rem;font-weight:700;">A</span>
+        </button>
+        <span class="rd-ctrl-sep" id="fontSizeDisplay">18</span>
+        <button class="rd-ctrl-btn" id="fontIncrease" aria-label="Besarkan teks">
+          <span style="font-size:1.05rem;font-weight:700;">A</span>
+        </button>
+      </div>
+
+      <div class="rd-ctrl-divider"></div>
+
+      <!-- Theme Toggle -->
+      <div class="rd-ctrl-group">
+        <button class="rd-theme-btn active" data-t="light" title="Terang" aria-label="Tema terang">
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="rd-theme-btn" data-t="sepia" title="Sepia" aria-label="Tema sepia">
+          <i class="fas fa-leaf"></i>
+        </button>
+        <button class="rd-theme-btn" data-t="dark" title="Malam" aria-label="Tema gelap">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+
+      <div class="rd-ctrl-divider"></div>
+
+      <!-- Bookmark -->
+      <button class="rd-ctrl-btn rd-bookmark-btn" id="bookmarkBtn" aria-label="Simpan cerita">
+        <i class="{% if is_bookmarked %}fas{% else %}far{% endif %} fa-bookmark" id="bookmarkIcon"></i>
+      </button>
+
+      <!-- Progress -->
+      <div class="rd-ctrl-divider"></div>
+      <span class="rd-progress-label" id="progressLabel">0%</span>
+    </div>
+  </div>
+
+  <!-- ===== READING AREA ===== -->
+  <div class="rd-page" id="rdPage" data-t="light">
+    <div class="rd-book">
+      <!-- Decorative rule -->
+      <div class="rd-ornament">
+        <span></span>
+        <i class="fas fa-scroll"></i>
+        <span></span>
+      </div>
+
+      <!-- Story article -->
+      <article class="rd-article" id="storyContent">
+        {{ story.content|linebreaks }}
+      </article>
+
+      <!-- End ornament -->
+      <div class="rd-ornament rd-ornament-end">
+        <span></span>
+        <i class="fas fa-feather-alt"></i>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STORY INFO STRIP ===== -->
+  <div class="rd-info-strip">
+    <div class="rd-info-item">
+      <i class="fas fa-map-marker-alt"></i>
+      <div>
+        <small>Asal Daerah</small>
+        <strong>{{ story.region.name }}</strong>
+      </div>
+    </div>
+    <div class="rd-info-item">
+      <i class="fas fa-layer-group"></i>
+      <div>
+        <small>Kategori</small>
+        <strong>{{ story.category.name }}</strong>
+      </div>
+    </div>
+    <div class="rd-info-item">
+      <i class="fas fa-user-friends"></i>
+      <div>
+        <small>Tokoh</small>
+        <strong>{{ story.characters }}</strong>
+      </div>
+    </div>
+    <div class="rd-info-item">
+      <i class="fas fa-star"></i>
+      <div>
+        <small>Rating</small>
+        <strong>{{ avg_rating|default:"4.5"|floatformat:1 }} / 5</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== REVIEW SECTION ===== -->
+  <div class="rd-reviews">
+    <h2 class="rd-reviews-title">
+      <i class="fas fa-comments"></i> Ulasan Pembaca
+    </h2>
+
+    {% if user.is_authenticated %}
+    <div class="rd-review-form">
+      <form action="{% url 'folklore:add_review' story.slug %}" method="post">
+        {% csrf_token %}
+        <!-- Star Rating -->
+        <div class="rd-star-group" id="starGroup">
+          <p class="rd-star-label">Beri penilaianmu</p>
+          <div class="rd-stars">
+            {% for i in "12345" %}
+            <label class="rd-star-label-item">
+              <input type="radio" name="rating" value="{{ i }}" {% if i == "5" %}checked{% endif %} class="rd-star-input">
+              <i class="fas fa-star rd-star-icon" data-val="{{ i }}"></i>
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+        <textarea name="comment" class="rd-textarea" placeholder="Apa yang kamu rasakan setelah membaca cerita ini?" required></textarea>
+        <button type="submit" class="rd-submit-btn">
+          <i class="fas fa-paper-plane"></i> Kirim Ulasan
+        </button>
+      </form>
+    </div>
+    {% else %}
+    <div class="rd-login-prompt">
+      <i class="fas fa-lock"></i>
+      <p>Masuk untuk meninggalkan ulasan</p>
+      <a href="{% url 'folklore:home' %}" class="rd-submit-btn" style="display:inline-flex; text-decoration:none; margin-top:12px;">Masuk Sekarang</a>
+    </div>
+    {% endif %}
+
+    <div class="rd-review-list">
+      {% for review in reviews %}
+      <div class="rd-review-item">
+        <div class="rd-review-header">
+          <div class="rd-reviewer">
+            <div class="rd-avatar">{{ review.user.username|first|upper }}</div>
+            <div>
+              <strong>{{ review.user.username }}</strong>
+              <small>{{ review.created_at|date:"d M Y" }}</small>
+            </div>
+          </div>
+          <div class="rd-stars-display">
+            {% for i in "12345"|make_list %}
+              <i class="{% if forloop.counter <= review.rating %}fas{% else %}far{% endif %} fa-star"></i>
+            {% endfor %}
+          </div>
+        </div>
+        <p class="rd-review-text">{{ review.comment }}</p>
+      </div>
+      {% empty %}
+      <div class="rd-empty-reviews">
+        <i class="fas fa-feather-alt"></i>
+        <p>Jadilah yang pertama mengulas cerita ini</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div><!-- end rd-wrapper -->
+{% endblock %}
+
+{% block extra_js %}
+<style>
+/* ================================================
+   READING PROGRESS BAR
+================================================ */
+#readProgressBar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  z-index: 9999;
+  transition: width 0.15s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ================================================
+   READER WRAPPER
+================================================ */
+.rd-wrapper {
+  max-width: 780px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+/* ================================================
+   HERO SECTION
+================================================ */
+.rd-hero {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, 50vw, 480px);
+  border-radius: 0 0 32px 32px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.rd-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.rd-hero-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color), #0d2920);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  color: var(--secondary-color);
+  opacity: 0.3;
+}
+
+.rd-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.1) 0%,
+    rgba(0,0,0,0.15) 30%,
+    rgba(0,0,0,0.75) 100%
+  );
+}
+
+.rd-hero-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: clamp(20px, 5vw, 40px);
+  color: white;
+}
+
+.rd-back-btn {
+  position: absolute;
+  top: clamp(16px, 4vw, 28px);
+  left: clamp(16px, 4vw, 28px);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+.rd-back-btn:hover { background: rgba(255,255,255,0.35); transform: scale(1.1); }
+
+.rd-hero-badge {
+  display: inline-block;
+  background: var(--secondary-color);
+  color: #1a1a1a;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.rd-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.rd-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  font-size: 0.82rem;
+  opacity: 0.85;
+  font-weight: 500;
+}
+.rd-hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rd-hero-meta i { color: var(--secondary-color); }
+
+/* ================================================
+   FLOATING CONTROLS
+================================================ */
+.rd-controls {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  transition: background 0.3s ease;
+}
+
+.rd-controls-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 16px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.rd-controls-inner::-webkit-scrollbar { display: none; }
+
+.rd-ctrl-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.rd-ctrl-btn {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.rd-ctrl-btn:hover { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+
+.rd-ctrl-sep {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+  padding: 0 6px;
+  min-width: 28px;
+  text-align: center;
+}
+
+.rd-ctrl-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border-color);
+  margin: 0 6px;
+  flex-shrink: 0;
+}
+
+.rd-theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background: var(--bg-color);
+  color: var(--text-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.rd-theme-btn.active {
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+  background: rgba(197,160,89,0.12);
+}
+.rd-theme-btn:hover { transform: scale(1.1); }
+
+.rd-bookmark-btn.active { color: var(--secondary-color); }
+.rd-progress-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+  min-width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ================================================
+   READING PAGE (BOOK STYLE)
+================================================ */
+.rd-page {
+  background: var(--card-bg);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+/* Light */
+.rd-page[data-t="light"] { background: #ffffff; color: #1c1c1c; }
+/* Sepia */
+.rd-page[data-t="sepia"]  { background: #faf6ee; color: #3b2b18; border-color: #e0d0b8; }
+/* Dark  */
+.rd-page[data-t="dark"]   { background: #18191d; color: #ccc8c0; border-color: #2e2f35; }
+
+.rd-book {
+  padding: clamp(28px, 7vw, 72px) clamp(20px, 8vw, 88px);
+}
+
+/* Ornament dividers */
+.rd-ornament {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+  color: var(--secondary-color);
+  opacity: 0.5;
+}
+.rd-ornament span {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+.rd-ornament-end { margin-top: 50px; margin-bottom: 0; }
+
+/* ================================================
+   ARTICLE TYPOGRAPHY
+================================================ */
+.rd-article {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.95;
+  letter-spacing: 0.01em;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  word-break: break-word;
+  transition: font-size 0.2s ease;
+}
+
+/* Drop cap */
+.rd-article p:first-of-type::first-letter {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 4.5em;
+  font-weight: 700;
+  float: left;
+  line-height: 0.72;
+  margin: 0.04em 0.12em 0 0;
+  color: var(--secondary-color);
+}
+
+.rd-page[data-t="dark"] .rd-article p:first-of-type::first-letter {
+  color: #c5a059;
+}
+
+.rd-article p {
+  margin-bottom: 1.5em;
+}
+.rd-article p:last-child { margin-bottom: 0; }
+
+/* ================================================
+   INFO STRIP
+================================================ */
+.rd-info-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border-color);
+  border: 1px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.rd-info-item {
+  background: var(--card-bg);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.rd-info-item > i {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.rd-info-item small {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  opacity: 0.45;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.rd-info-item strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-serif);
+  color: var(--primary-color);
+}
+
+[data-theme="dark"] .rd-info-item strong {
+  color: var(--secondary-color);
+}
+
+/* ================================================
+   REVIEWS
+================================================ */
+.rd-reviews {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: clamp(24px, 6vw, 48px);
+  margin: 0 0 40px;
+}
+
+.rd-reviews-title {
+  font-size: 1.5rem;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.rd-reviews-title i { color: var(--secondary-color); }
+
+.rd-review-form { margin-bottom: 36px; }
+
+.rd-star-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  opacity: 0.5;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.rd-stars {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.rd-star-input { display: none; }
+
+.rd-star-icon {
+  font-size: 1.8rem;
+  color: #d4d4d4;
+  cursor: pointer;
+  transition: color 0.15s, transform 0.15s;
+}
+.rd-star-icon:hover, .rd-star-icon.selected {
+  color: #f1c40f;
+  transform: scale(1.15);
+}
+
+.rd-textarea {
+  width: 100%;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-color);
+  border-radius: 14px;
+  padding: 16px 18px;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  resize: vertical;
+  min-height: 110px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  display: block;
+  margin-bottom: 16px;
+}
+.rd-textarea:focus { border-color: var(--secondary-color); }
+.rd-textarea::placeholder { opacity: 0.4; }
+
+.rd-submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--primary-color), #2c5e50);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.rd-submit-btn:hover { filter: brightness(1.15); transform: translateY(-2px); }
+
+.rd-login-prompt {
+  text-align: center;
+  padding: 32px 20px;
+  opacity: 0.6;
+  border: 1px dashed var(--border-color);
+  border-radius: 16px;
+  margin-bottom: 32px;
+}
+.rd-login-prompt i { font-size: 2rem; margin-bottom: 10px; display: block; }
+
+.rd-review-list { display: flex; flex-direction: column; gap: 24px; }
+
+.rd-review-item {
+  padding: 20px;
+  background: var(--bg-color);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.rd-review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rd-reviewer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rd-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), #2c5e50);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.rd-reviewer strong { display: block; font-size: 0.95rem; }
+.rd-reviewer small  { opacity: 0.45; font-size: 0.75rem; }
+
+.rd-stars-display { color: #f1c40f; font-size: 0.8rem; }
+.rd-stars-display .far { color: #d4d4d4; }
+
+.rd-review-text { opacity: 0.8; line-height: 1.7; font-size: 0.92rem; }
+
+.rd-empty-reviews {
+  text-align: center;
+  padding: 40px 20px;
+  opacity: 0.35;
+}
+.rd-empty-reviews i { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+
+/* ================================================
+   RESPONSIVE
+================================================ */
+@media (max-width: 600px) {
+  .rd-book { padding: 24px 18px; }
+  .rd-article { font-size: 16px !important; text-align: left; }
+  .rd-article p:first-of-type::first-letter { font-size: 3.5em; }
+  .rd-info-strip { grid-template-columns: 1fr 1fr; }
+  .rd-hero { height: clamp(260px, 60vw, 340px); border-radius: 0 0 24px 24px; }
+}
+
+@media (min-width: 601px) {
+  .rd-info-strip { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .rd-info-strip { grid-template-columns: 1fr; }
+  .rd-controls-inner { justify-content: flex-start; padding: 8px 12px; }
+}
+</style>
+
+<script>
+// === Reading Progress ===
+const bar = document.getElementById('readProgressBar');
+const pLabel = document.getElementById('progressLabel');
+function updateProg() {
+  const s = window.scrollY;
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  const p = h > 0 ? Math.min(100, Math.round((s / h) * 100)) : 0;
+  bar.style.width = p + '%';
+  pLabel.innerText = p + '%';
+}
+window.addEventListener('scroll', updateProg, { passive: true });
+updateProg();
+
+// === Reading Time ===
+const art = document.getElementById('storyContent');
+if (art) {
+  const w = art.innerText.trim().split(/\s+/).length;
+  document.getElementById('readingTimeVal').innerText = Math.max(1, Math.ceil(w / 200));
+}
+
+// === Font Size ===
+let fs = parseInt(localStorage.getItem('rd_fs') || '18');
+const fsDisplay = document.getElementById('fontSizeDisplay');
+function setFs(n) {
+  fs = Math.min(28, Math.max(14, n));
+  art.style.fontSize = fs + 'px';
+  fsDisplay.innerText = fs;
+  localStorage.setItem('rd_fs', fs);
+}
+setFs(fs);
+document.getElementById('fontIncrease').onclick = () => setFs(fs + 2);
+document.getElementById('fontDecrease').onclick = () => setFs(fs - 2);
+
+// === Theme ===
+const rdPage = document.getElementById('rdPage');
+const rdControls = document.getElementById('rdControls');
+const themeBtns = document.querySelectorAll('.rd-theme-btn');
+
+function setTheme(t) {
+  rdPage.dataset.t = t;
+  themeBtns.forEach(b => b.classList.toggle('active', b.dataset.t === t));
+  // Sync controls bar bg
+  if (t === 'dark') {
+    rdControls.style.background = '#18191d';
+    rdControls.style.borderColor = '#2e2f35';
+  } else if (t === 'sepia') {
+    rdControls.style.background = '#faf6ee';
+    rdControls.style.borderColor = '#e0d0b8';
+  } else {
+    rdControls.style.background = '';
+    rdControls.style.borderColor = '';
+  }
+  localStorage.setItem('rd_theme', t);
+}
+setTheme(localStorage.getItem('rd_theme') || 'light');
+themeBtns.forEach(b => b.onclick = () => setTheme(b.dataset.t));
+
+// === Bookmark ===
+const bBtn = document.getElementById('bookmarkBtn');
+const bIcon = document.getElementById('bookmarkIcon');
+if (bBtn) {
+  bBtn.addEventListener('click', () => {
+    fetch("{% url 'folklore:toggle_bookmark' story.slug %}")
+      .then(r => r.json())
+      .then(d => {
+        if (d.status === 'added') {
+          bIcon.classList.replace('far','fas');
+          bBtn.classList.add('active');
+        } else {
+          bIcon.classList.replace('fas','far');
+          bBtn.classList.remove('active');
+        }
+      });
+  });
+}
+
+// === Star Rating Interactive ===
+const starIcons = document.querySelectorAll('.rd-star-icon');
+const starInputs = document.querySelectorAll('.rd-star-input');
+let selectedRating = 5;
+
+function highlightStars(n) {
+  starIcons.forEach((ic, i) => ic.classList.toggle('selected', i < n));
+}
+highlightStars(selectedRating);
+
+starIcons.forEach((ic, idx) => {
+  ic.addEventListener('mouseenter', () => highlightStars(idx + 1));
+  ic.addEventListener('mouseleave', () => highlightStars(selectedRating));
+  ic.addEventListener('click', () => {
+    selectedRating = idx + 1;
+    starInputs.forEach((inp, i) => inp.checked = (i === idx));
+    highlightStars(selectedRating);
+  });
+});
+</script>
+{% endblock %}

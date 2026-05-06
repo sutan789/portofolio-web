@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #020205;
+  --color-foreground: #ffffff;
+  
+  --color-primary: #a855f7;
+  --color-secondary: #06b6d4;
+  --color-accent: #ec4899;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-shimmer: shimmer 2s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; }
+    to { text-shadow: 0 0 20px #a855f7, 0 0 30px #a855f7, 0 0 40px #a855f7; }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+}
+
+:root {
+  --background: #020205;
+  --foreground: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  /* Add a subtle text shadow globally for better legibility on busy backgrounds */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(10, 10, 20, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    background: rgba(15, 15, 25, 0.5);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 10px 40px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(20, 20, 35, 0.7);
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(168, 85, 247, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #c084fc 0%, #22d3ee 50%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+
+  .text-gradient-subtle {
+    background: linear-gradient(to right, #c084fc, #22d3ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Enhanced readability for muted text */
+  .text-gray-400 {
+    color: #cbd5e1 !important; /* Lighter than default gray-400 */
+  }
+  
+  .text-gray-500 {
+    color: #94a3b8 !important; /* Lighter than default gray-500 */
+  }
+
+  .neon-border {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 60px rgba(168, 85, 247, 0.15);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.9);
+  }
+
+  .galaxy-bg {
+    background: radial-gradient(ellipse at 50% 0%, #0f0a25 0%, #020205 70%);
+  }
+
+  .section-divider {
+    background: linear-gradient(to right, transparent, rgba(168, 85, 247, 0.4), transparent);
+    height: 1px;
+  }
+
+  .skill-bar {
+    background: linear-gradient(90deg, #a855f7 0%, #06b6d4 100%);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+  }
+
+  .drop-shadow-glow {
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5)) drop-shadow(0 0 20px rgba(168, 85, 247, 0.2));
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 15px rgba(168, 85, 247, 0.6), 0 0 30px rgba(168, 85, 247, 0.3);
+  }
+
+  .badge-glow {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  }
+
+  /* For the custom scrollbar in modal */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.3);
+    border-radius: 20px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.5);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020205;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.4);
+  border-radius: 10px;
+  border: 2px solid #020205;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.7);
+}
+
+/* Selection Color */
+::selection {
+  background: rgba(168, 85, 247, 0.4);
+  color: white;
+}
+
+/* Base Headings Readability */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+p {
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}

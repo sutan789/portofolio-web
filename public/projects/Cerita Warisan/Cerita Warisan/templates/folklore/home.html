@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - Cerita Warisan{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="page-header-subtitle">Welcome to the Archive</div>
+    <h1 class="page-header-title">Discovery of <br><span style="font-style: italic; color: var(--secondary-color);">Ancestral Wisdom</span></h1>
+    <p class="page-header-desc">
+        Explore the tapestry of folklore, legends, and myths woven into the heart of the archipelago.
+    </p>
+    <div class="page-header-divider"></div>
+</div>
+
+<!-- Search Bar -->
+<div style="display: flex; justify-content: center; margin-bottom: 80px;">
+    <form action="{% url 'folklore:library' %}" method="get" class="premium-search-bar glass-effect">
+        <div class="premium-search-input-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" name="q" class="premium-search-input" placeholder="Search archive by region, theme, or character...">
+        </div>
+        <button type="submit" class="btn-premium premium-search-btn">
+            <span>Explore Archive</span>
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </form>
+</div>
+
+<section style="margin-bottom: 60px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+        <div>
+            <h2 style="font-size: 2.2rem; margin-bottom: 5px;">Highly Revered</h2>
+            <p style="opacity: 0.5;">Popular stories from the ancestral archive</p>
+        </div>
+        <a href="{% url 'folklore:library' %}" style="color: var(--secondary-color); text-decoration: none; font-weight: 600; padding-bottom: 5px; border-bottom: 2px solid var(--secondary-color); transition: var(--transition);" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Explore All Archive</a>
+    </div>
+    
+    <div class="story-grid">
+        {% for story in popular_stories %}
+        <a href="{% url 'folklore:story_detail' story.slug %}" style="text-decoration: none; color: inherit;">
+            <div class="story-card">
+                <div class="story-img-container">
+                    {% if story.cover_image %}
+                        <img src="{{ story.cover_image.url }}" class="story-img" alt="{{ story.title }}">
+                    {% else %}
+                        <div class="story-img" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--primary-color), #2c5e50);">
+                            <i class="fas fa-scroll fa-3x" style="color: white; opacity: 0.4;"></i>
+                        </div>
+                    {% endif %}
+                    <div style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; backdrop-filter: blur(4px);">
+                        <i class="fas fa-star" style="color: #f1c40f;"></i> 4.9
+                    </div>
+                </div>
+                <div class="story-body">
+                    <span class="story-badge">{{ story.category.name }}</span>
+                    <h3 class="story-title">{{ story.title }}</h3>
+                    <p style="font-size: 0.95rem; opacity: 0.7; margin-bottom: 25px; flex-grow: 1;">{{ story.summary|truncatewords:15 }}</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; opacity: 0.5; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                        <span><i class="fas fa-map-marker-alt"></i> {{ story.region.name }}</span>
+                        <span><i class="fas fa-clock"></i> 12 min read</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<section style="background: var(--primary-color); color: white; padding: clamp(40px, 10vw, 80px); border-radius: 30px; position: relative; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.2);">
+    <div style="position: relative; z-index: 2; max-width: 600px;">
+        <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 25px;">Preserve the <br>Living Parchment</h2>
+        <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 40px; line-height: 1.8;">Join our community of curators and researchers. Get monthly insights into folklore restorations and newly discovered archives from the archipelago.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <input type="email" placeholder="Enter your email address..." style="flex: 1; min-width: 250px; padding: 18px 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; font-size: 1rem;">
+            <button class="btn-premium" style="background: var(--secondary-color); color: white;">Join the Archive</button>
+        </div>
+    </div>
+    <div style="position: absolute; right: -50px; bottom: -50px; opacity: 0.05; transform: rotate(-15deg);">
+        <i class="fas fa-feather-alt" style="font-size: 25rem;"></i>
+    </div>
+</section>
+{% endblock %}

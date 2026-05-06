@@ -1,0 +1,621 @@
+:root {
+    --primary: #111827; /* Dark navy/black for primary button */
+    --primary-hover: #374151;
+    --bg-color: #f1f5f9; /* Light gray background */
+    --sidebar-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --text-main: #111827;
+    --text-muted: #64748b;
+    --excel-bg: #e0f2fe; /* Light blue */
+    --excel-text: #0369a1; 
+    --excel-hover: #bae6fd;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-main);
+    overflow: hidden; /* Hide main body scroll */
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Control Panel / Sidebar */
+.control-panel {
+    width: 280px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 24px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Custom Scrollbar for sidebar */
+.control-panel::-webkit-scrollbar {
+    width: 5px;
+}
+.control-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+.control-panel::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+.control-panel::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Panel Header styling to look clean */
+.panel-header {
+    margin-bottom: 24px;
+}
+.logo-icon {
+    display: none; /* Removed for cleaner look */
+}
+.panel-header h1 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+.panel-header p {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Forms */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.form-group input, 
+.main-select {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px; /* Softer rounded corners */
+    font-family: inherit;
+    font-size: 13px;
+    width: 100%;
+    color: var(--text-main);
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    outline: none;
+    transition: all 0.2s ease; /* Smooth transition */
+}
+
+.form-group input:focus, 
+.main-select:focus {
+    border-color: #3b82f6; /* Modern blue focus */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); /* Soft focus ring */
+}
+
+.main-select {
+    cursor: pointer;
+}
+
+/* Buttons Polish */
+.btn-primary {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px); /* Subtle lift */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    width: 100%;
+    background: var(--excel-bg);
+    color: var(--excel-text);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--excel-hover);
+    transform: translateY(-1px);
+}
+
+.btn-add {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px dashed #cbd5e1;
+    margin-top: 4px;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+}
+
+.btn-add:hover {
+    background: #f8fafc;
+    color: var(--primary);
+    border-color: var(--primary);
+    border-style: solid;
+}
+
+/* Utilities */
+.mb-4 { margin-bottom: 24px; }
+.mb-2 { margin-bottom: 12px; }
+.mt-2 { margin-top: 8px; }
+.mt-4 { margin-top: 24px; }
+.icon-mr { margin-right: 8px; }
+.panel-divider { margin: 20px 0; border: 0; border-top: 1px solid var(--border-color); }
+.text-left { text-align: left; }
+.form-title { font-size: 10px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; margin:0;}
+.text-muted { color: var(--text-muted); }
+
+/* Form Badges (Sleek UI) */
+.form-badge {
+    padding: 12px;
+    margin: 16px 0 12px;
+    border-radius: 12px;
+    border-left: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.form-badge strong {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.form-badge p {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.badge-school {
+    background: #eff6ff;
+    border-left-color: #3b82f6;
+    color: #1e40af;
+}
+
+.badge-posyandu {
+    background: #fffbeb;
+    border-left-color: #f59e0b;
+    color: #92400e;
+}
+
+/* Document Preview Panel */
+.preview-panel {
+    flex-grow: 1;
+    padding: 40px;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Scrollbar for preview panel */
+.preview-panel::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.preview-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+.preview-panel::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+.preview-panel::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.document-page {
+    width: 210mm;
+    min-height: 297mm;
+    background: white;
+    padding: 1.5cm;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    color: black;
+    font-family: "Times New Roman", Times, serif; 
+    font-size: 11pt;
+    border-radius: 2px;
+    transform: scale(0.98); /* Initial scale for entry effect */
+    animation: fadeInScale 0.4s ease forwards;
+}
+
+@keyframes fadeInScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.document-page.landscape-mode {
+    width: 297mm;
+    min-height: 210mm;
+    font-size: 10pt;
+}
+
+.document-page.landscape-mode .absensi-table th, 
+.document-page.landscape-mode .absensi-table td {
+    padding: 4px;
+    font-size: 9pt;
+}
+
+/* Document content */
+.doc-header {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.kop-container {
+    position: relative;
+    margin-bottom: 5px;
+    padding: 0 160px; /* Increased space to prevent collision with wide logos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+}
+
+.kop-logo {
+    position: absolute;
+    left: 0;
+    max-height: 55px; /* Reduced to make the logo smaller */
+    max-width: 150px; /* Hard limit so it never touches the text */
+    width: auto;
+    object-fit: contain;
+}
+
+.kop-text {
+    text-align: center;
+    width: 100%;
+}
+
+.kop-spacer {
+    display: none;
+}
+
+.kop-divider {
+    border: 0;
+    border-top: 2px solid black;
+    border-bottom: 1px solid black;
+    height: 5px;
+    margin: 5px 0 15px 0;
+}
+
+.doc-header h2 {
+    font-size: 11pt;
+    font-weight: bold;
+    margin: 1px 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.doc-header h2.doc-date {
+    margin-top: 15px;
+    font-size: 13pt;
+    text-align: center;
+}
+
+.absensi-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.absensi-table th, 
+.absensi-table td {
+    border: 1px solid black;
+    padding: 6px 4px; 
+    vertical-align: middle;
+}
+
+.absensi-table tr {
+    height: 35px;
+}
+
+.absensi-table th {
+    font-weight: bold;
+    text-align: center;
+    background-color: transparent;
+}
+
+.absensi-table th:nth-child(1) { text-align: center; }
+.absensi-table td:nth-child(1) { text-align: center; }
+
+/* Stylings for specific columns */
+.sig-cell {
+    position: relative;
+    width: 15%;
+    border-left: none;
+    border-right: none;
+}
+
+.sig-separator {
+    border-left: 1px solid black;
+}
+
+.sig-number {
+    font-weight: bold;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    font-size: 10pt;
+}
+
+/* Row Highlight */
+.row-highlight td:not(.no-print) {
+    background-color: #8faec9 !important;
+}
+.row-highlight {
+    font-weight: bold;
+}
+
+/* Delete button */
+.btn-delete {
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete:hover {
+    background: #dc2626;
+}
+
+/* Focus styles for contenteditable */
+[contenteditable]:hover {
+    background-color: #fca5a533;
+    outline: 1px dotted red;
+}
+[contenteditable]:focus {
+    background-color: #fca5a566;
+    outline: 2px solid red;
+}
+
+/* Slip Insentif Styling */
+.slip-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.slip-container {
+    padding: 1.5cm;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.slip-divider {
+    border-top: 1px dashed #666;
+    width: 100%;
+    margin: 0;
+}
+.slip-title {
+    text-align: center;
+    margin: 5px 0 10px 0;
+}
+.slip-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+    font-size: 11pt;
+}
+.slip-info-table td {
+    padding: 3px 0;
+    vertical-align: top;
+}
+.slip-data-penerima {
+    margin-bottom: 15px;
+}
+.slip-rincian-table {
+    margin-top: 5px;
+    font-size: 11pt;
+}
+.slip-rincian-table td, .slip-rincian-table th {
+    padding: 6px;
+}
+.slip-signatures {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 40px;
+}
+.sig-box {
+    text-align: left;
+    width: 250px;
+}
+
+/* Print footer */
+.print-footer {
+    display: none;
+}
+
+
+/* Media Query for Print */
+@media print {
+    @page {
+        size: A4 portrait !important; 
+        margin: 1cm;
+    }
+    body {
+        background: transparent;
+        margin: 0;
+        height: auto;
+        overflow: visible;
+    }
+    .app-container {
+        padding: 0;
+        margin: 0;
+        display: block;
+        height: auto;
+        overflow: visible;
+    }
+    .no-print {
+        display: none !important;
+    }
+    .preview-panel {
+        display: block;
+        padding: 0;
+        overflow: visible;
+    }
+    .document-page {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        width: 100%;
+        min-height: auto;
+        page-break-after: always;
+    }
+    
+    .print-footer {
+        display: block;
+        margin-top: 15px;
+        text-align: right;
+        font-size: 9pt;
+        font-style: italic;
+        color: #333;
+    }
+    
+    * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    [contenteditable]:hover, [contenteditable]:focus {
+        background-color: transparent !important;
+        outline: none !important;
+    }
+}
+
+/* Responsiveness for the Web App View */
+@media (max-width: 1200px) {
+    .app-container {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        overflow: visible;
+    }
+    .control-panel {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        height: auto;
+    }
+    .preview-panel {
+        max-width: 100%;
+        overflow-x: auto;
+        padding: 20px;
+    }
+}
+
+/* Professional Row Interactivity */
+#tableBody tr {
+    transition: background-color 0.2s ease;
+}
+
+#tableBody tr:hover {
+    background-color: rgba(59, 130, 246, 0.03); /* Extremely subtle blue tint */
+}
+
+/* Toast Notification Styling */
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 10000;
+}
+
+.toast {
+    background: #111827;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-icon {
+    width: 20px;
+    height: 20px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+/* Fix for Table Focus */
+[contenteditable]:focus {
+    background-color: rgba(59, 130, 246, 0.05);
+    outline: none;
+    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.3);
+    border-radius: 4px;
+}

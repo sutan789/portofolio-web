@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block title %}Dasbor Saya - Cerita Warisan{% endblock %}
+
+{% block content %}
+
+{# ── Header Greeting ── #}
+<div style="margin-bottom: 50px;">
+    <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.4; margin-bottom: 10px; font-weight: 700;">
+        Selamat Datang Kembali
+    </div>
+    <h1 style="font-size: clamp(1.8rem, 4vw, 2.8rem); font-family: var(--font-serif); margin-bottom: 8px; line-height: 1.2;">
+        Halo, <span style="color: var(--secondary-color); font-style: italic;">{{ user.username }}</span> 👋
+    </h1>
+    <p style="opacity: 0.5; font-size: 1rem;">
+        Lanjutkan perjalanan kamu menelusuri warisan nusantara.
+    </p>
+</div>
+
+{# ── Stats Cards ── #}
+<div class="stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 50px;">
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-left: 4px solid var(--primary-color); border-radius: 20px; padding: 28px; display: flex; align-items: center; gap: 20px; box-shadow: var(--shadow);">
+        <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(26,60,52,0.08); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--primary-color); flex-shrink: 0;">
+            <i class="fas fa-book-reader"></i>
+        </div>
+        <div>
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.4; margin-bottom: 5px; font-weight: 700;">Cerita Dibaca</div>
+            <div style="font-size: 2.2rem; font-weight: 700; font-family: var(--font-serif); line-height: 1;">{{ stats.stories_read }}</div>
+        </div>
+    </div>
+
+    <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-left: 4px solid var(--secondary-color); border-radius: 20px; padding: 28px; display: flex; align-items: center; gap: 20px; box-shadow: var(--shadow);">
+        <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(197,160,89,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--secondary-color); flex-shrink: 0;">
+            <i class="fas fa-bookmark"></i>
+        </div>
+        <div>
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.4; margin-bottom: 5px; font-weight: 700;">Koleksi Tersimpan</div>
+            <div style="font-size: 2.2rem; font-weight: 700; font-family: var(--font-serif); line-height: 1;">{{ stats.bookmarks_count }}</div>
+        </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, var(--primary-color), #2c5e50); border-radius: 20px; padding: 28px; display: flex; align-items: center; gap: 20px; box-shadow: 0 8px 30px rgba(26,60,52,0.25);">
+        <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #c5a059; flex-shrink: 0;">
+            <i class="fas fa-scroll"></i>
+        </div>
+        <div>
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.5; margin-bottom: 5px; font-weight: 700; color: white;">Jelajahi Arsip</div>
+            <a href="{% url 'folklore:library' %}" style="font-size: 1.1rem; font-weight: 700; color: #c5a059; text-decoration: none; font-family: var(--font-serif);">
+                Buka Perpustakaan →
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{# ── Main Grid: History + Bookmarks ── #}
+<div class="dashboard-grid" style="display: grid; grid-template-columns: 3fr 2fr; gap: 32px; align-items: start;">
+
+    {# Left: Reading History #}
+    <section>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--border-color);">
+            <h2 style="font-size: 1.3rem; font-family: var(--font-serif);">
+                <i class="fas fa-history" style="color: var(--secondary-color); margin-right: 10px; font-size: 0.85em;"></i>
+                Riwayat Baca
+            </h2>
+            <a href="{% url 'folklore:library' %}" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--secondary-color); text-decoration: none; font-weight: 700;">Lihat Semua</a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+            {% for item in reading_history %}
+            <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 18px; box-shadow: var(--shadow); transition: var(--transition);"
+                 onmouseover="this.style.borderColor='var(--secondary-color)'; this.style.transform='translateX(4px)'"
+                 onmouseout="this.style.borderColor='var(--border-color)'; this.style.transform=''">
+                {# Cover thumbnail #}
+                <div style="width: 72px; height: 52px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: var(--primary-color);">
+                    {% if item.story.cover_image %}
+                    <img src="{{ item.story.cover_image.url }}" style="width: 100%; height: 100%; object-fit: cover;">
+                    {% else %}
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3);">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                {# Info #}
+                <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--font-serif);">{{ item.story.title }}</div>
+                    <div style="font-size: 0.78rem; opacity: 0.4;">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 5px;"></i>{{ item.story.region.name }}
+                        &nbsp;·&nbsp;
+                        <i class="fas fa-clock" style="margin-right: 3px;"></i>{{ item.last_read|timesince }} lalu
+                    </div>
+                </div>
+                {# Action #}
+                <a href="{% url 'folklore:story_detail' item.story.slug %}" class="btn-premium" style="padding: 10px 20px; font-size: 0.78rem; flex-shrink: 0;">
+                    Lanjutkan
+                </a>
+            </div>
+            {% empty %}
+            <div style="text-align: center; padding: 50px 30px; background: var(--card-bg); border-radius: 18px; border: 2px dashed var(--border-color); opacity: 0.5;">
+                <i class="fas fa-book-open" style="font-size: 2.5rem; margin-bottom: 14px; display: block; opacity: 0.3;"></i>
+                <p style="margin-bottom: 12px;">Belum ada riwayat bacaan.</p>
+                <a href="{% url 'folklore:library' %}" style="color: var(--secondary-color); font-weight: 700; text-decoration: none; font-size: 0.85rem;">
+                    Mulai Membaca →
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {# Right: Bookmarks #}
+    <aside>
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 30px; box-shadow: var(--shadow); position: sticky; top: 100px;">
+            <h2 style="font-size: 1.3rem; font-family: var(--font-serif); margin-bottom: 24px;">
+                <i class="fas fa-feather-alt" style="color: var(--secondary-color); margin-right: 10px; font-size: 0.85em;"></i>
+                Arsip Pribadi
+            </h2>
+
+            <div style="display: flex; flex-direction: column; gap: 18px;">
+                {% for b in bookmarks %}
+                <a href="{% url 'folklore:story_detail' b.story.slug %}" style="text-decoration: none; color: inherit; display: flex; gap: 14px; align-items: center; padding: 10px; border-radius: 12px; transition: var(--transition);"
+                   onmouseover="this.style.background='var(--bg-color)'"
+                   onmouseout="this.style.background='transparent'">
+                    <div style="width: 48px; height: 48px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: var(--primary-color);">
+                        {% if b.story.cover_image %}
+                        <img src="{{ b.story.cover_image.url }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        {% else %}
+                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3);">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div style="flex: 1; min-width: 0;">
+                        <div style="font-weight: 700; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px;">{{ b.story.title }}</div>
+                        <div style="font-size: 0.75rem; opacity: 0.4;">{{ b.story.region.name }}</div>
+                    </div>
+                    <i class="fas fa-bookmark" style="color: var(--secondary-color); font-size: 0.8rem; flex-shrink: 0;"></i>
+                </a>
+                {% empty %}
+                <div style="text-align: center; opacity: 0.4; padding: 25px 10px;">
+                    <i class="fas fa-bookmark" style="font-size: 2rem; margin-bottom: 10px; display: block; opacity: 0.3;"></i>
+                    <p style="font-size: 0.85rem;">Arsip pribadi kosong.</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if bookmarks %}
+            <a href="{% url 'folklore:profile' %}" class="btn-premium" style="display: flex; width: 100%; margin-top: 24px; background: transparent; color: var(--text-color); border: 1px solid var(--border-color); justify-content: center;">
+                <i class="fas fa-list"></i> Kelola Bookmark
+            </a>
+            {% endif %}
+        </div>
+    </aside>
+
+</div>
+
+{% endblock %}

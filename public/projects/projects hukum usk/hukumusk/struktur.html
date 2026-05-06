@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Struktur Kepengurusan DPM FH USK 2024 – Pimpinan, Komisi, dan seluruh anggota Dewan Perwakilan Mahasiswa.">
+  <title>Kepengurusan – DPM FH USK</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .struct-intro { max-width: 600px; }
+    .exec-board { background: var(--bg-white); }
+    .exec-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    .exec-main {
+      position: relative; border-radius: var(--radius-xl); overflow: hidden;
+      aspect-ratio: 3/4; background: linear-gradient(145deg, #5C0F2A, #9B2335);
+    }
+    .exec-main .ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 6rem; color: rgba(255,255,255,0.12); }
+    .exec-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(74,14,31,0.97), transparent);
+      padding: 3rem 1.5rem 1.5rem;
+    }
+    .exec-overlay .role { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; display: inline-block; background: rgba(0,0,0,0.3); padding: 0.2rem 0.6rem; border-radius: 2px; }
+    .exec-overlay .name { font-family: var(--font-serif); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; color: #fff; }
+    .exec-overlay .dept { font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-top: 0.25rem; }
+
+    .exec-side { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .exec-card {
+      position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 3/4;
+    }
+    .exec-card .ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: rgba(255,255,255,0.12); }
+    .exec-card .team-card-overlay { padding: 1.5rem 1rem 1rem; }
+
+    .exec-nav-carousel { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; }
+    .exec-nav-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); cursor: pointer; transition: var(--transition); }
+    .exec-nav-dot.active { background: var(--maroon); width: 28px; border-radius: 5px; }
+
+    /* Commission */
+    .commission-section { background: var(--bg-section); }
+    .comm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .comm-card {
+      border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border);
+      background: var(--bg-white); transition: var(--transition);
+    }
+    .comm-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .comm-card-img {
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; color: rgba(255,255,255,0.15);
+    }
+    .comm-card-body { padding: 1rem; }
+    .comm-card-body .role { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--maroon); margin-bottom: 0.2rem; }
+    .comm-card-body .name { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); }
+    .comm-card-body .dept { font-size: 0.78rem; color: var(--text-gray); }
+
+    /* Sidebar (mobile hidden) */
+    .struct-sidebar { display: none; }
+    .struct-sidebar-inner { position: sticky; top: 90px; }
+    .struct-sidebar a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; font-size: 0.9rem; color: var(--text-gray); border-radius: var(--radius-md); transition: var(--transition); margin-bottom: 0.25rem; }
+    .struct-sidebar a:hover, .struct-sidebar a.active { background: rgba(123,26,46,0.06); color: var(--maroon); font-weight: 600; }
+    .struct-layout { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+
+    @media (min-width: 768px) {
+      .exec-grid { grid-template-columns: 1.3fr 1fr; }
+      .comm-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .struct-layout { grid-template-columns: 220px 1fr; }
+      .struct-sidebar { display: block; }
+      .comm-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v2h20V7L12 2zm-8 9v6H2v2h20v-2h-2v-6h-2v6h-2v-6h-2v6h-2v-6H8v6H6v-6H4z" fill="white"/></svg></div>
+      <div><div class="logo-text">DPM FH USK</div><div class="logo-sub">Fakultas Hukum</div></div>
+    </a>
+    <div class="navbar-nav">
+      <a href="index.html">Beranda</a><a href="about.html">Tentang Kami</a><a href="tugas-fungsi.html">Tugas & Fungsi</a>
+      <a href="struktur.html">Kepengurusan</a><a href="berita.html">Berita</a><a href="kontak.html">Kontak</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="kontak.html" class="btn-cta">Bergabung</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Beranda</a><a href="about.html">📋 Tentang Kami</a><a href="tugas-fungsi.html">⚖️ Tugas & Fungsi</a>
+  <a href="struktur.html">👥 Kepengurusan</a><a href="berita.html">📰 Berita</a><a href="kontak.html">📞 Kontak</a>
+  <a href="kontak.html" class="mobile-cta">Bergabung dengan Dewan →</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> Kepengurusan</div>
+    <h1><em style="color:var(--gold);font-style:normal;">Struktur Kepengurusan</em></h1>
+    <p>Para penjaga tata kelola mahasiswa. Individu berdedikasi yang mengemban amanat judicial excellence di Fakultas Hukum.</p>
+    <div class="filter-group" style="margin-top:1.5rem;">
+      <button class="filter-btn active" data-filter="all">Semua Anggota</button>
+      <button class="filter-btn" data-filter="executive">Pimpinan</button>
+      <button class="filter-btn" data-filter="legislative">Legislatif</button>
+      <button class="filter-btn" data-filter="advocacy">Advokasi</button>
+      <button class="filter-btn" data-filter="secretariat">Sekretariat</button>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN LAYOUT -->
+<section class="section exec-board">
+  <div class="container">
+    <div class="struct-layout">
+
+      <!-- Sidebar (desktop) -->
+      <aside class="struct-sidebar">
+        <div class="struct-sidebar-inner">
+          <div style="margin-bottom:1rem;">
+            <a href="index.html" class="navbar-logo" style="margin-bottom:1.5rem;">
+              <div class="logo-icon" style="width:28px;height:28px;"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v2h20V7L12 2zm-8 9v6H2v2h20v-2h-2v-6h-2v6h-2v-6h-2v6h-2v-6H8v6H6v-6H4z" fill="white"/></svg></div>
+              <div><div class="logo-text" style="font-size:0.9rem;">DPM FH USK</div><div class="logo-sub">Legislative Portal</div></div>
+            </a>
+          </div>
+          <a href="#" class="active">📜 Constitution</a>
+          <a href="#">📝 Petitions</a>
+          <a href="#">📋 Bylaws</a>
+          <a href="#">📄 Meeting Minutes</a>
+          <a href="kontak.html">📞 Contact</a>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <div>
+        <!-- Executive Board -->
+        <h3 style="font-family:var(--font-serif);color:var(--maroon-dark);margin-bottom:0.5rem;">— <em>Executive Board</em></h3>
+        <p style="color:var(--text-gray);margin-bottom:1.5rem;font-size:0.9rem;">Pimpinan DPM FH USK periode 2024.</p>
+
+        <div class="exec-grid fade-in" data-filter-container>
+          <!-- Chairman -->
+          <div class="exec-main" data-category="executive">
+            <div class="ph">👤</div>
+            <div class="exec-overlay">
+              <span class="role">Ketua DPM</span>
+              <div class="name">Nazatul Hisar</div>
+              <div class="dept">Pimpinan Umum DPM FH USK 2024</div>
+            </div>
+          </div>
+
+          <!-- Side members -->
+          <div class="exec-side">
+            <div class="exec-card" data-category="executive" style="background:linear-gradient(135deg,#4A0E1F,#7B1A2E);">
+              <div class="ph">👤</div>
+              <div class="team-card-overlay">
+                <div class="role">Wakil Ketua</div>
+                <div class="name">Jeremi Marbun</div>
+              </div>
+            </div>
+            <div class="exec-card" data-category="secretariat" style="background:linear-gradient(135deg,#5C0F2A,#9B2335);">
+              <div class="ph">👤</div>
+              <div class="team-card-overlay">
+                <div class="role">Sekretaris Jenderal</div>
+                <div class="name">Ahmad Farid</div>
+              </div>
+            </div>
+            <div class="exec-card" data-category="secretariat" style="background:linear-gradient(135deg,#3D0A1A,#6B1628);">
+              <div class="ph">👤</div>
+              <div class="team-card-overlay">
+                <div class="role">Bendahara Umum</div>
+                <div class="name">Siti Rahimah</div>
+              </div>
+            </div>
+            <div class="exec-card" data-category="executive" style="background:linear-gradient(145deg,#5C0F2A,#7B1A2E);">
+              <div class="ph">👤</div>
+              <div class="team-card-overlay">
+                <div class="role">Wakil Sekretaris</div>
+                <div class="name">Riza Amanda</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exec-nav-carousel fade-in">
+          <div class="exec-nav-dot active"></div>
+          <div class="exec-nav-dot"></div>
+          <div class="exec-nav-dot"></div>
+        </div>
+
+        <!-- Commission Members -->
+        <h3 style="font-family:var(--font-serif);color:var(--maroon-dark);margin:3rem 0 0.5rem;">— <em>Komisi</em></h3>
+        <p style="color:var(--text-gray);margin-bottom:1.5rem;font-size:0.9rem;">Anggota komisi DPM FH USK yang bertugas di bidang masing-masing.</p>
+
+        <div class="comm-grid" data-filter-container>
+          <div class="comm-card fade-in" data-category="legislative">
+            <div class="comm-card-img" style="background:linear-gradient(135deg,#4A0E1F,#7B1A2E);">👤</div>
+            <div class="comm-card-body">
+              <div class="role">Komisi I</div>
+              <div class="name">Budi Santoso</div>
+              <div class="dept">Head of Internal Affairs</div>
+            </div>
+          </div>
+          <div class="comm-card fade-in" data-category="advocacy">
+            <div class="comm-card-img" style="background:linear-gradient(135deg,#5C0F2A,#9B2335);">👤</div>
+            <div class="comm-card-body">
+              <div class="role">Komisi II</div>
+              <div class="name">Dina Amalia</div>
+              <div class="dept">Head of Advocacy</div>
+            </div>
+          </div>
+          <div class="comm-card fade-in" data-category="legislative">
+            <div class="comm-card-img" style="background:linear-gradient(135deg,#3D0A1A,#6B1628);">👤</div>
+            <div class="comm-card-body">
+              <div class="role">Komisi III</div>
+              <div class="name">Rizky Pratama</div>
+              <div class="dept">Head of Legislation</div>
+            </div>
+          </div>
+          <div class="comm-card fade-in" data-category="secretariat">
+            <div class="comm-card-img" style="background:linear-gradient(145deg,#5C0F2A,#7B1A2E);">👤</div>
+            <div class="comm-card-body">
+              <div class="role">Komisi IV</div>
+              <div class="name">Laila Fitri</div>
+              <div class="dept">Public Relations</div>
+            </div>
+          </div>
+          <div class="comm-card fade-in" data-category="legislative">
+            <div class="comm-card-img" style="background:linear-gradient(135deg,#4A0E1F,#9B2335);">👤</div>
+            <div class="comm-card-body">
+              <div class="role">Anggota Komisi I</div>
+              <div class="name">Faisal Akbar</div>
+              <div class="dept">Internal Affairs</div>
+            </div>
+          </div>
+          <div class="comm-card fade-in" data-category="advocacy">
+            <div class="comm-card-img" style="background:linear-gradient(135deg,#5C0F2A,#7B1A2E);">👤</div>
+            <div class="comm-card-body">
+              <div class="role">Anggota Komisi II</div>
+              <div class="name">Putri Nabila</div>
+              <div class="dept">Advocacy</div>
+            </div>
+          </div>
+          <div class="comm-card fade-in" data-category="legislative">
+            <div class="comm-card-img" style="background:linear-gradient(135deg,#3D0A1A,#7B1A2E);">👤</div>
+            <div class="comm-card-body">
+              <div class="role">Anggota Komisi III</div>
+              <div class="name">Hendra Wijaya</div>
+              <div class="dept">Legislation</div>
+            </div>
+          </div>
+          <div class="comm-card fade-in" data-category="secretariat">
+            <div class="comm-card-img" style="background:linear-gradient(145deg,#4A0E1F,#6B1628);">👤</div>
+            <div class="comm-card-body">
+              <div class="role">Anggota Komisi IV</div>
+              <div class="name">Maya Sari</div>
+              <div class="dept">Public Relations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="fade-in">Bergabung dengan Dewan</h2>
+    <p class="fade-in">Jadilah bagian dari perubahan. Bergabunglah dengan DPM FH USK.</p>
+    <a href="kontak.html" class="btn btn-gold fade-in">Daftar Sekarang →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo">DPM FH USK</div><p class="footer-desc">Toward Judicial Excellence & Modern Governance.</p></div>
+      <div><div class="footer-title">Navigasi</div><div class="footer-links"><a href="index.html">Beranda</a><a href="about.html">Tentang</a><a href="tugas-fungsi.html">Tugas & Fungsi</a><a href="struktur.html">Kepengurusan</a></div></div>
+      <div><div class="footer-title">Legal</div><div class="footer-links"><a href="#">Kebijakan Privasi</a><a href="#">Ketentuan Layanan</a></div></div>
+      <div><div class="footer-title">Kontak</div><div class="footer-links"><a href="mailto:dpmhukum@usk.ac.id">dpmhukum@usk.ac.id</a><a href="kontak.html">Kirim Pesan</a></div></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 DPM FH USK. Toward Judicial Excellence.</p><div class="footer-bottom-links"><a href="#">Kebijakan Privasi</a><a href="#">Ketentuan Layanan</a><a href="#">Portal Fakultas</a></div></div>
+  </div>
+</footer>
+<button id="scrollTop" aria-label="Scroll to top">↑</button>
+<script src="js/main.js"></script>
+</body>
+</html>

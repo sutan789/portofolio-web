@@ -1,0 +1,251 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="description" content="Hubungi DPM FH USK – Dewan Perwakilan Mahasiswa Fakultas Hukum Universitas Syiah Kuala. Sampaikan aspirasi dan pertanyaan Anda."&gt;
+  &lt;title&gt;Kontak – DPM FH USK&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+  &lt;style&gt;
+    .contact-section { background: var(--bg-white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-info-card {
+      padding: 2rem; border-radius: var(--radius-lg);
+      background: var(--bg-white); border: 1px solid var(--border);
+    }
+    .contact-form-card {
+      padding: 2rem; border-radius: var(--radius-lg);
+      background: var(--bg-section); border: 1px solid var(--border);
+    }
+    .hours-card {
+      background: var(--maroon); color: #fff; padding: 1.5rem;
+      border-radius: var(--radius-lg); margin-top: 1.5rem; position: relative; overflow: hidden;
+    }
+    .hours-card::after {
+      content: ''; position: absolute; right: -20px; bottom: -20px;
+      width: 100px; height: 100px; background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .hours-card h4 { color: #fff; margin-bottom: 0.5rem; }
+    .hours-card p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+    .hours-icon {
+      position: absolute; right: 1.5rem; bottom: 1rem;
+      opacity: 0.2; font-size: 2.5rem; line-height: 1;
+    }
+    .submit-btn {
+      width: 100%; padding: 1rem; border-radius: var(--radius-md);
+      background: var(--maroon); color: #fff; font-weight: 600;
+      font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      cursor: pointer; border: none; transition: var(--transition);
+    }
+    .submit-btn:hover { background: var(--maroon-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .form-privacy { text-align: center; font-size: 0.78rem; color: var(--text-light); margin-top: 0.75rem; }
+
+    .map-section { background: var(--bg-section); }
+    .map-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center; }
+    .map-placeholder {
+      border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--bg-section), var(--border));
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+      gap: 1rem; font-size: 1rem; color: var(--text-gray); border: 1px solid var(--border);
+      position: relative;
+    }
+    .map-pin {
+      width: 64px; height: 64px; background: var(--maroon);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: #fff; box-shadow: var(--shadow-md);
+    }
+    .get-directions-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      color: var(--maroon); font-weight: 600; font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .get-directions-link:hover { gap: 0.6rem; }
+
+    @media (min-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr 1.2fr; }
+      .map-grid { grid-template-columns: 1fr 1fr; }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- NAVBAR --&gt;
+&lt;nav class="navbar" id="navbar"&gt;
+  &lt;div class="container navbar-inner"&gt;
+    &lt;a href="index.html" class="navbar-logo"&gt;
+      &lt;div class="logo-icon"&gt;&lt;svg viewBox="0 0 24 24"&gt;&lt;path d="M12 2L2 7v2h20V7L12 2zm-8 9v6H2v2h20v-2h-2v-6h-2v6h-2v-6h-2v6h-2v-6H8v6H6v-6H4z" fill="white"/&gt;&lt;/svg&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;div class="logo-text"&gt;DPM FH USK&lt;/div&gt;&lt;div class="logo-sub"&gt;Fakultas Hukum&lt;/div&gt;&lt;/div&gt;
+    &lt;/a&gt;
+    &lt;div class="navbar-nav"&gt;
+      &lt;a href="index.html"&gt;Beranda&lt;/a&gt;&lt;a href="about.html"&gt;Tentang Kami&lt;/a&gt;&lt;a href="tugas-fungsi.html"&gt;Tugas &amp; Fungsi&lt;/a&gt;
+      &lt;a href="struktur.html"&gt;Kepengurusan&lt;/a&gt;&lt;a href="berita.html"&gt;Berita&lt;/a&gt;&lt;a href="kontak.html"&gt;Kontak&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="navbar-actions"&gt;
+      &lt;a href="kontak.html" class="btn-cta"&gt;Bergabung&lt;/a&gt;
+      &lt;button class="hamburger" id="hamburger" aria-label="Toggle menu"&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+&lt;div class="mobile-menu" id="mobileMenu"&gt;
+  &lt;a href="index.html"&gt;🏠 Beranda&lt;/a&gt;&lt;a href="about.html"&gt;📋 Tentang Kami&lt;/a&gt;&lt;a href="tugas-fungsi.html"&gt;⚖️ Tugas &amp; Fungsi&lt;/a&gt;
+  &lt;a href="struktur.html"&gt;👥 Kepengurusan&lt;/a&gt;&lt;a href="berita.html"&gt;📰 Berita&lt;/a&gt;&lt;a href="kontak.html"&gt;📞 Kontak&lt;/a&gt;
+  &lt;a href="kontak.html" class="mobile-cta"&gt;Bergabung dengan Dewan →&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- PAGE HERO --&gt;
+&lt;section class="page-hero"&gt;
+  &lt;div class="container page-hero-content"&gt;
+    &lt;div class="breadcrumb"&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt; &lt;span&gt;/&lt;/span&gt; Contact&lt;/div&gt;
+    &lt;h1&gt;Connect with &lt;em style="color:var(--gold);font-style:normal;"&gt;the Council&lt;/em&gt;&lt;/h1&gt;
+    &lt;p&gt;Facilitating transparent communication between the student body and the judicial assembly. Reach out for legislative inquiries, administrative support, or institutional feedback.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- CONTACT FORM &amp; INFO --&gt;
+&lt;section class="section contact-section"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="contact-grid"&gt;
+
+      &lt;!-- Left: Contact Info --&gt;
+      &lt;div&gt;
+        &lt;div class="contact-info-card fade-in"&gt;
+          &lt;h3 style="color:var(--maroon-dark);margin-bottom:1.5rem;"&gt;Contact Details&lt;/h3&gt;
+
+          &lt;div class="contact-detail-item"&gt;
+            &lt;div class="contact-icon"&gt;📍&lt;/div&gt;
+            &lt;div&gt;
+              &lt;div class="contact-label"&gt;Office Address&lt;/div&gt;
+              &lt;div class="contact-value"&gt;Fakultas Hukum USK, Jl. Putroe Phang No.1,&lt;br&gt;Kopelma Darussalam, Kec. Syiah Kuala,&lt;br&gt;Kota Banda Aceh, Aceh 23111&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="contact-detail-item"&gt;
+            &lt;div class="contact-icon"&gt;✉️&lt;/div&gt;
+            &lt;div&gt;
+              &lt;div class="contact-label"&gt;Official Email&lt;/div&gt;
+              &lt;div class="contact-value"&gt;dpmhukum@usk.ac.id&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="contact-detail-item"&gt;
+            &lt;div class="contact-icon"&gt;📞&lt;/div&gt;
+            &lt;div&gt;
+              &lt;div class="contact-label"&gt;Phone Number&lt;/div&gt;
+              &lt;div class="contact-value"&gt;Royan (0855-7881-003)&lt;br&gt;Hisar (0895-3052-2767)&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style="margin-top:1.5rem;"&gt;
+            &lt;div class="contact-label" style="margin-bottom:0.75rem;"&gt;Institutional Networks&lt;/div&gt;
+            &lt;div class="social-links"&gt;
+              &lt;a href="#" class="social-link" id="liContactLink"&gt;🌐 LinkedIn&lt;/a&gt;
+              &lt;a href="#" class="social-link" id="igContactLink"&gt;📷 Instagram&lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="hours-card fade-in"&gt;
+          &lt;h4&gt;Legislative Hours&lt;/h4&gt;
+          &lt;p&gt;Monday – Friday&lt;br&gt;&lt;strong&gt;10:00 AM – 05:00 PM WIB&lt;/strong&gt;&lt;/p&gt;
+          &lt;div class="hours-icon"&gt;⚖️&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Right: Form --&gt;
+      &lt;div class="contact-form-card fade-in"&gt;
+        &lt;form id="contactForm"&gt;
+          &lt;div class="form-row"&gt;
+            &lt;div class="form-group"&gt;
+              &lt;label class="form-label" for="fullName"&gt;Full Name&lt;/label&gt;
+              &lt;input type="text" id="fullName" class="form-input" placeholder="John Doe" required&gt;
+            &lt;/div&gt;
+            &lt;div class="form-group"&gt;
+              &lt;label class="form-label" for="studentId"&gt;Student ID (NPM)&lt;/label&gt;
+              &lt;input type="text" id="studentId" class="form-input" placeholder="210310..."&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group"&gt;
+            &lt;label class="form-label" for="email"&gt;Email Address&lt;/label&gt;
+            &lt;input type="email" id="email" class="form-input" placeholder="email@student.usk.ac.id" required&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group"&gt;
+            &lt;label class="form-label" for="subject"&gt;Subject of Inquiry&lt;/label&gt;
+            &lt;select id="subject" class="form-select"&gt;
+              &lt;option value="general"&gt;General Inquiry&lt;/option&gt;
+              &lt;option value="aspirasi"&gt;Student Aspiration&lt;/option&gt;
+              &lt;option value="pengaduan"&gt;Complaint&lt;/option&gt;
+              &lt;option value="legislasi"&gt;Legislative Information&lt;/option&gt;
+              &lt;option value="kerjasama"&gt;Cooperation&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+          &lt;div class="form-group"&gt;
+            &lt;label class="form-label" for="message"&gt;Message Content&lt;/label&gt;
+            &lt;textarea id="message" class="form-textarea" placeholder="Please provide details regarding your inquiry..." required&gt;&lt;/textarea&gt;
+          &lt;/div&gt;
+          &lt;button type="submit" class="submit-btn" id="submitContactBtn"&gt;▶ Transmit Message&lt;/button&gt;
+          &lt;p class="form-privacy"&gt;Your communication is protected under institutional privacy standards.&lt;/p&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- MAP SECTION --&gt;
+&lt;section class="section map-section"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="map-grid"&gt;
+      &lt;div class="fade-in"&gt;
+        &lt;h2 style="color:var(--maroon-dark);margin-bottom:1rem;"&gt;Visit the Office of&lt;br&gt;Judicial Governance&lt;/h2&gt;
+        &lt;p style="margin-bottom:1.5rem;"&gt;
+          The DPM Office is located in the heart of the Law Faculty campus, providing a neutral ground for student-council deliberations.
+        &lt;/p&gt;
+        &lt;a href="https://maps.google.com/?q=Fakultas+Hukum+Universitas+Syiah+Kuala" target="_blank" rel="noopener" class="get-directions-link" id="getDirectionsBtn"&gt;
+          Get Directions on Maps ↗
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class="map-placeholder fade-in"&gt;
+        &lt;div class="map-pin"&gt;🏛️&lt;/div&gt;
+        &lt;span&gt;Fakultas Hukum USK&lt;/span&gt;
+        &lt;span style="font-size:0.82rem;"&gt;Darussalam, Banda Aceh&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- FOOTER --&gt;
+&lt;footer class="footer"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="footer-grid"&gt;
+      &lt;div&gt;
+        &lt;div class="footer-logo" style="font-style:italic;"&gt;DPM Hukum USK&lt;/div&gt;
+        &lt;p class="footer-desc"&gt;© 2024 DPM Hukum USK. Judicial Excellence &amp; Modern Governance.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="footer-title"&gt;Legal Navigation&lt;/div&gt;
+        &lt;div class="footer-links"&gt;
+          &lt;a href="#"&gt;Privacy Policy&lt;/a&gt;
+          &lt;a href="#"&gt;Terms of Service&lt;/a&gt;
+          &lt;a href="#"&gt;Legal Archive&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class="footer-title"&gt;Connect&lt;/div&gt;
+        &lt;div class="footer-links"&gt;
+          &lt;a href="kontak.html"&gt;Contact Us&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class="social-links" style="margin-top:0.75rem;"&gt;
+          &lt;a href="#" class="social-link" style="padding:0.4rem;border:none;font-size:1.1rem;"&gt;🌐&lt;/a&gt;
+          &lt;a href="#" class="social-link" style="padding:0.4rem;border:none;font-size:1.1rem;"&gt;📷&lt;/a&gt;
+          &lt;a href="#" class="social-link" style="padding:0.4rem;border:none;font-size:1.1rem;"&gt;💼&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer-bottom"&gt;
+      &lt;p&gt;© 2024 DPM FH USK. Toward Judicial Excellence.&lt;/p&gt;
+      &lt;div class="footer-bottom-links"&gt;&lt;a href="#"&gt;Kebijakan Privasi&lt;/a&gt;&lt;a href="#"&gt;Ketentuan Layanan&lt;/a&gt;&lt;a href="#"&gt;Portal Fakultas&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+&lt;button id="scrollTop" aria-label="Scroll to top"&gt;↑&lt;/button&gt;
+&lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
