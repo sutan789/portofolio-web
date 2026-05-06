@@ -15,13 +15,13 @@ export default function Preloader() {
           clearInterval(interval);
           return 100;
         }
-        return prev + Math.floor(Math.random() * 15) + 5;
+        return prev + Math.floor(Math.random() * 25) + 10;
       });
-    }, 150);
+    }, 100);
 
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3200);
+    }, 2000);
 
     return () => {
       clearInterval(interval);

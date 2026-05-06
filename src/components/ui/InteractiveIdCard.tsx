@@ -157,13 +157,17 @@ export default function InteractiveIdCard() {
 
                       <div className="flex justify-center mb-10 relative">
                         <div className="relative w-40 h-40 flex items-center justify-center">
-                            {/* Scanning Radar */}
+                            {/* Scanning Radar - Hidden on mobile for performance */}
                             <motion.div 
                               animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }} 
                               transition={{ duration: 2, repeat: Infinity }}
-                              className="absolute inset-0 bg-primary/10 rounded-full blur-xl"
+                              className="absolute inset-0 bg-primary/10 rounded-full blur-xl hidden md:block"
                             />
-                            <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute inset-0 border border-dashed border-primary/40 rounded-full" />
+                            <motion.div 
+                              animate={{ rotate: 360 }} 
+                              transition={{ duration: 20, repeat: Infinity, ease: "linear" }} 
+                              className="absolute inset-0 border border-dashed border-primary/40 rounded-full hidden md:block" 
+                            />
                             <div className="relative w-[88%] h-[88%] rounded-full overflow-hidden border-4 border-primary shadow-[0_0_30px_rgba(168,85,247,0.4)] z-10 bg-[#111]">
                               <Image 
                                   src="/avatars/sutan.jpg" 

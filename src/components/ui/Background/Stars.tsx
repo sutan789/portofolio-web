@@ -22,14 +22,14 @@ export default function StarsBackground() {
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    const stars: { x: number; y: number; size: number; speed: number; opacity: number }[] = [];
-    const numStars = 100;
+    const isMobile = window.innerWidth < 768;
+    const numStars = isMobile ? 40 : 100;
 
     for (let i = 0; i < numStars; i++) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 1.5,
+        size: Math.random() * (isMobile ? 1.2 : 1.5),
         speed: Math.random() * 0.03,
         opacity: Math.random() * 0.5,
       });
