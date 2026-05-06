@@ -24,6 +24,7 @@ export default function StarsBackground() {
 
     const isMobile = window.innerWidth < 768;
     const numStars = isMobile ? 40 : 100;
+    const stars: { x: number; y: number; size: number; speed: number; opacity: number }[] = [];
 
     for (let i = 0; i < numStars; i++) {
       stars.push({
