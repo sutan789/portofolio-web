@@ -275,7 +275,7 @@ export default function Portfolio() {
               </button>
 
               {/* Media Display (Left) */}
-              <div className="w-full md:w-[60%] h-[35%] sm:h-[400px] md:h-full relative bg-black shrink-0">
+              <div className="w-full md:w-[60%] h-[35%] sm:h-[400px] md:min-h-[500px] lg:min-h-[600px] relative bg-black shrink-0">
                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1),transparent_70%)]" />
                  <ProjectGallery images={selectedProject.images} title={selectedProject.title} />
                  
@@ -371,40 +371,57 @@ function ProjectGallery({ images, title }: { images: string[], title: string }) 
   const [index, setIndex] = useState(0);
 
   return (
-    <div className="relative w-full h-full group/gallery overflow-hidden">
-      <AnimatePresence mode="wait">
+    <div className="relative w-full h-full group/gallery overflow-hidden bg-black">
+      <AnimatePresence>
         <motion.div
           key={index}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.2}
+          onDragEnd={(_, info) => {
+            const swipeThreshold = 50;
+            if (info.offset.x > swipeThreshold) {
+              setIndex((i) => (i - 1 + images.length) % images.length);
+            } else if (info.offset.x < -swipeThreshold) {
+              setIndex((i) => (i + 1) % images.length);
+            }
+          }}
           initial={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
           transition={{ duration: 0.6, ease: "circOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 cursor-grab active:cursor-grabbing touch-none"
         >
-          <Image src={images[index]} alt={title} fill className="object-cover md:object-contain" priority />
+          <Image 
+            src={images[index]} 
+            alt={title} 
+            fill 
+            className="object-cover md:object-contain pointer-events-none" 
+            priority 
+          />
         </motion.div>
       </AnimatePresence>
 
       {/* Gradient Overlay for Controls */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/gallery:opacity-100 transition-opacity" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 md:group-hover/gallery:opacity-100 transition-opacity" />
 
       {/* Navigation Controls */}
       {images.length > 1 && (
         <>
-          <div className="absolute inset-y-0 left-0 flex items-center p-4">
+          <div className="absolute inset-y-0 left-0 flex items-center p-2 md:p-4">
             <button 
               onClick={(e) => { e.stopPropagation(); setIndex((i) => (i - 1 + images.length) % images.length); }} 
-              className="p-4 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 text-white hover:bg-primary hover:border-primary transition-all opacity-0 group-hover/gallery:opacity-100 translate-x-[-20px] group-hover/gallery:translate-x-0"
+              className="p-3 md:p-4 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 text-white hover:bg-primary hover:border-primary transition-all opacity-100 md:opacity-0 md:group-hover/gallery:opacity-100 md:translate-x-[-20px] md:group-hover/gallery:translate-x-0"
             >
-              <ChevronLeft size={24} />
+              <ChevronLeft size={20} className="md:w-6 md:h-6" />
             </button>
           </div>
-          <div className="absolute inset-y-0 right-0 flex items-center p-4">
+          <div className="absolute inset-y-0 right-0 flex items-center p-2 md:p-4">
             <button 
               onClick={(e) => { e.stopPropagation(); setIndex((i) => (i + 1) % images.length); }} 
-              className="p-4 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 text-white hover:bg-primary hover:border-primary transition-all opacity-0 group-hover/gallery:opacity-100 translate-x-[20px] group-hover/gallery:translate-x-0"
+              className="p-3 md:p-4 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 text-white hover:bg-primary hover:border-primary transition-all opacity-100 md:opacity-0 md:group-hover/gallery:opacity-100 md:translate-x-[20px] md:group-hover/gallery:translate-x-0"
             >
-              <ChevronRight size={24} />
+              <ChevronRight size={20} className="md:w-6 md:h-6" />
             </button>
           </div>
         </>
