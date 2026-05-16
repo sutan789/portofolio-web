@@ -119,12 +119,12 @@ export default function Skills() {
               style={{ transformStyle: "preserve-3d" }}
             >
               {SKILLS.map((skill, i) => {
-                const phi = Math.acos(-1 + (2 * i) / SKILLS.length);
-                const theta = Math.sqrt(SKILLS.length * Math.PI) * phi;
+                const phi = Math.acos(-1 + (2 * (i + 0.5)) / SKILLS.length);
+                const theta = 2 * Math.PI * i * ((1 + Math.sqrt(5)) / 2);
                 
                 const x = radius * Math.sin(phi) * Math.cos(theta);
-                const y = radius * Math.sin(phi) * Math.sin(theta);
-                const z = radius * Math.cos(phi);
+                const y = radius * Math.cos(phi);
+                const z = radius * Math.sin(phi) * Math.sin(theta);
 
                 const isActive = activeSkillIndex === i;
 
