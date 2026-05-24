@@ -22,7 +22,7 @@ export const PERSONAL_INFO = {
   github: "https://github.com/sutan789",
   bio: "Seorang Fullstack Developer yang berdedikasi untuk menciptakan solusi digital inovatif. Berpengalaman dalam membangun aplikasi web yang skalabel dan efisien, menggabungkan estetika desain dengan fungsionalitas backend yang kuat untuk membantu bisnis bertransformasi di era digital.",
   stats: {
-    projects: "4+",
+    projects: "5+",
     experience: "2+",
     clients: "4+"
   }
@@ -150,6 +150,25 @@ export const PROJECTS = [
     tags: ["PHP", "Laravel", "MySQL", "Bootstrap"],
     githubUrl: "#",
     liveUrl: "#"
+  },
+  {
+    id: 5,
+    title: "ConvertAja",
+    category: "Web App",
+    logo: "/projects/convertaja/Screenshot 2026-05-24 204517.png",
+    description: "Platform serba guna untuk konversi dan pengelolaan dokumen, termasuk fitur pengeditan dan manipulasi PDF dengan antarmuka modern, cepat, dan responsif.",
+    images: [
+      "/projects/convertaja/Screenshot 2026-05-24 204517.png",
+      "/projects/convertaja/Screenshot 2026-05-24 205729.png",
+      "/projects/convertaja/Screenshot 2026-05-24 205749.png",
+      "/projects/convertaja/Screenshot 2026-05-24 205803.png",
+      "/projects/convertaja/Screenshot 2026-05-24 205814.png",
+      "/projects/convertaja/Screenshot 2026-05-24 205824.png",
+      "/projects/convertaja/Screenshot 2026-05-24 205831.png"
+    ],
+    tags: ["Next.js", "React", "Tailwind CSS"],
+    githubUrl: "#",
+    liveUrl: "https://convertaja.vercel.app/"
   }
 ];
 
