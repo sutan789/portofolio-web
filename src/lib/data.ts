@@ -108,7 +108,7 @@ export const PROJECTS = [
     id: 2,
     title: "Portal DPM FH USK",
     category: "Web Design",
-    logo: "bootstrap", // Placeholder icon until logo is found
+    logo: "/projects/projects hukum usk/logo1'.jpg",
     description: "Portal informasi resmi Dewan Perwakilan Mahasiswa Fakultas Hukum USK. Website multi-halaman yang responsif untuk transparansi kegiatan organisasi.",
     images: [
       "/projects/projects hukum usk/dashboardhukumusk.png",
@@ -139,7 +139,7 @@ export const PROJECTS = [
     id: 4,
     title: "POS SPPG",
     category: "Fullstack Web",
-    logo: "laravel",
+    logo: "/projects/POS SPPG LAMARA DAN LAAMTEUMEN/logo.png",
     description: "Sistem Point of Sale (POS) kustom yang dirancang untuk manajemen inventaris dan transaksi di SPPG Lamara & Lamteumen. Dilengkapi dengan fitur manajemen stok, pelaporan otomatis, dan integrasi database yang aman.",
     images: [
       "/projects/POS SPPG LAMARA DAN LAAMTEUMEN/Screenshot 2026-05-06 122515.png",
@@ -169,6 +169,24 @@ export const PROJECTS = [
     tags: ["Next.js", "React", "Tailwind CSS"],
     githubUrl: "#",
     liveUrl: "https://convertaja.vercel.app/"
+  },
+  {
+    id: 6,
+    title: "TamuGo",
+    category: "Fullstack Web",
+    logo: "/projects/tamugo/logo1.png",
+    description: "Platform Buku Tamu Digital modern dan sistem ticketing untuk pengelolaan acara secara profesional. Dilengkapi fitur unggulan seperti Interactive Visual Form Builder, Live Screen Text, QR Code Check-in, dan Dashboard Analytics yang dinamis.",
+    images: [
+      "/projects/tamugo/1.png",
+      "/projects/tamugo/2.png",
+      "/projects/tamugo/3.png",
+      "/projects/tamugo/4.png",
+      "/projects/tamugo/5.png",
+      "/projects/tamugo/6.png"
+    ],
+    tags: ["Laravel 12", "Tailwind CSS", "MySQL", "Vanilla JS"],
+    githubUrl: "#",
+    liveUrl: "https://tamugo.web.id"
   }
 ];
 
