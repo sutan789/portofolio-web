@@ -275,9 +275,11 @@ export default function Portfolio() {
               </button>
 
               {/* Media Display (Left) */}
-              <div className="w-full md:w-[60%] h-[35%] sm:h-[400px] md:min-h-[500px] lg:min-h-[600px] relative bg-black shrink-0">
+              <div className="w-full md:w-[60%] h-[300px] sm:h-[400px] md:h-auto md:min-h-[500px] lg:min-h-[600px] relative bg-black shrink-0 flex flex-col">
                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.1),transparent_70%)]" />
-                 <ProjectGallery images={selectedProject.images} title={selectedProject.title} />
+                 <div className="flex-1 relative w-full h-full">
+                   <ProjectGallery images={selectedProject.images} title={selectedProject.title} />
+                 </div>
                  
                  {/* Metadata Floating (Desktop Only) */}
                  <div className="absolute bottom-8 left-8 right-8 z-40 hidden lg:flex justify-between items-end">
@@ -320,10 +322,39 @@ export default function Portfolio() {
                       <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                       <h4 className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em]">System Objective</h4>
                     </div>
-                    <p className="text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed font-medium">
+                    <p className="text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed font-medium whitespace-pre-line">
                       {selectedProject.description}
                     </p>
                   </div>
+
+                  {selectedProject.features && (
+                    <div className="space-y-4 md:space-y-6">
+                      <div className="flex items-center gap-2 md:gap-3 text-white/30">
+                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
+                        <h4 className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em]">Key Features</h4>
+                      </div>
+                      <ul className="list-none space-y-3 text-gray-300 text-sm md:text-base leading-relaxed font-medium">
+                        {selectedProject.features.map((feature: string, idx: number) => {
+                          const [title, ...rest] = feature.split(': ');
+                          return (
+                            <li key={idx} className="flex items-start gap-3">
+                              <span className="text-cyan-500 mt-1">✦</span>
+                              <span>
+                                {rest.length > 0 ? (
+                                  <>
+                                    <strong className="text-white">{title}: </strong>
+                                    {rest.join(': ')}
+                                  </>
+                                ) : (
+                                  feature
+                                )}
+                              </span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  )}
 
                   <div className="space-y-4 md:space-y-6">
                     <div className="flex items-center gap-2 md:gap-3 text-white/30">

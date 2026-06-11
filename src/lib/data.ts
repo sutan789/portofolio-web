@@ -91,6 +91,48 @@ export const SKILLS = [
 export const PROJECTS = [
   {
     id: 1,
+    title: "TamuGo",
+    category: "Fullstack Web",
+    logo: "/projects/tamugo/logo1.png",
+    description: "Platform Buku Tamu Digital modern dan sistem ticketing untuk pengelolaan acara secara profesional. Dilengkapi fitur unggulan seperti Interactive Visual Form Builder, Live Screen Text, QR Code Check-in, dan Dashboard Analytics yang dinamis.",
+    images: [
+      "/projects/tamugo/landing page dan alur system.png",
+      "/projects/tamugo/dashboard jadi.png",
+      "/projects/tamugo/form daftar even.png",
+      "/projects/tamugo/disain form untuk tamu.png",
+      "/projects/tamugo/Data Tamu.png",
+      "/projects/tamugo/Scan panitia dan barcode Tamu.png"
+    ],
+    tags: ["Laravel 12", "Tailwind CSS", "MySQL", "Vanilla JS"],
+    githubUrl: "#",
+    liveUrl: "https://tamugo.web.id"
+  },
+  {
+    id: 2,
+    title: "Sistem Gudang SPPG",
+    category: "Warehouse Management System",
+    logo: "/projects/SitemGudangSPPG/logo.png",
+    description: "Sistem Gudang SPPG adalah aplikasi manajemen inventaris tingkat lanjut yang dirancang khusus untuk memantau pergerakan bahan makanan dan operasional pergudangan secara presisi. Berbeda dengan aplikasi kasir (POS) standar, sistem ini menggunakan pendekatan Ledger-based (Kartu Stok / Rekening Koran) untuk memastikan akurasi absolut pada setiap mutasi barang.\n\nAplikasi ini dikembangkan dengan fokus pada performa, keamanan data, serta kompatibilitas penuh dengan lingkungan Shared Hosting.",
+    images: [
+      "/projects/SitemGudangSPPG/1.png",
+      "/projects/SitemGudangSPPG/2.png",
+      "/projects/SitemGudangSPPG/3.png",
+      "/projects/SitemGudangSPPG/4.png"
+    ],
+    features: [
+      "Dashboard Analitik Dinamis: Menampilkan ringkasan metrik secara real-time dengan visualisasi grafik interaktif.",
+      "Single Source of Truth (Kartu Stok): Saldo barang dikalkulasi dari riwayat qty_in dan qty_out layaknya buku rekening bank.",
+      "Proteksi Stok Minus: Sistem otomatis memblokir pengeluaran jika kuantitas melebihi persediaan fisik.",
+      "Multi-Item Daily Inspections: Fitur pemeriksaan harian dengan arsitektur 1 Header - Many Items.",
+      "Laporan Komprehensif: Menghasilkan 7 jenis laporan profesional dalam format PDF & Excel.",
+      "Manajemen Expired Date: Memonitor dan memberikan notifikasi otomatis untuk barang yang akan kadaluwarsa."
+    ],
+    tags: ["Laravel 12", "Tailwind CSS", "Alpine.js", "MySQL"],
+    githubUrl: "#",
+    liveUrl: "#"
+  },
+  {
+    id: 3,
     title: "Doocgen Cool",
     category: "Web App",
     logo: "/projects/projectDoocgercool/logoDoocGenCool.png",
@@ -105,7 +147,7 @@ export const PROJECTS = [
     liveUrl: "#"
   },
   {
-    id: 2,
+    id: 4,
     title: "Portal DPM FH USK",
     category: "Web Design",
     logo: "/projects/projects hukum usk/logo1'.jpg",
@@ -119,7 +161,7 @@ export const PROJECTS = [
     liveUrl: "#"
   },
   {
-    id: 3,
+    id: 5,
     title: "Cerita Warisan",
     category: "Fullstack Web",
     logo: "/projects/Cerita Warisan/logoceritawarisan.jpg",
@@ -136,23 +178,7 @@ export const PROJECTS = [
     liveUrl: "#"
   },
   {
-    id: 4,
-    title: "POS SPPG",
-    category: "Fullstack Web",
-    logo: "/projects/POS SPPG LAMARA DAN LAAMTEUMEN/logo.png",
-    description: "Sistem Point of Sale (POS) kustom yang dirancang untuk manajemen inventaris dan transaksi di SPPG Lamara & Lamteumen. Dilengkapi dengan fitur manajemen stok, pelaporan otomatis, dan integrasi database yang aman.",
-    images: [
-      "/projects/POS SPPG LAMARA DAN LAAMTEUMEN/Screenshot 2026-05-06 122515.png",
-      "/projects/POS SPPG LAMARA DAN LAAMTEUMEN/Screenshot 2026-05-06 122759.png",
-      "/projects/POS SPPG LAMARA DAN LAAMTEUMEN/Screenshot 2026-05-06 122818.png",
-      "/projects/POS SPPG LAMARA DAN LAAMTEUMEN/Screenshot 2026-05-06 122825.png"
-    ],
-    tags: ["PHP", "Laravel", "MySQL", "Bootstrap"],
-    githubUrl: "#",
-    liveUrl: "#"
-  },
-  {
-    id: 5,
+    id: 6,
     title: "ConvertAja",
     category: "Web App",
     logo: "/projects/convertaja/Screenshot 2026-05-24 204517.png",
@@ -169,24 +195,6 @@ export const PROJECTS = [
     tags: ["Next.js", "React", "Tailwind CSS"],
     githubUrl: "#",
     liveUrl: "https://convertaja.vercel.app/"
-  },
-  {
-    id: 6,
-    title: "TamuGo",
-    category: "Fullstack Web",
-    logo: "/projects/tamugo/logo1.png",
-    description: "Platform Buku Tamu Digital modern dan sistem ticketing untuk pengelolaan acara secara profesional. Dilengkapi fitur unggulan seperti Interactive Visual Form Builder, Live Screen Text, QR Code Check-in, dan Dashboard Analytics yang dinamis.",
-    images: [
-      "/projects/tamugo/1.png",
-      "/projects/tamugo/2.png",
-      "/projects/tamugo/3.png",
-      "/projects/tamugo/4.png",
-      "/projects/tamugo/5.png",
-      "/projects/tamugo/6.png"
-    ],
-    tags: ["Laravel 12", "Tailwind CSS", "MySQL", "Vanilla JS"],
-    githubUrl: "#",
-    liveUrl: "https://tamugo.web.id"
   }
 ];
 
