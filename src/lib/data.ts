@@ -200,13 +200,13 @@ export const PROJECTS = [
     id: 7,
     title: "IngatTBC (Mobile App)",
     category: "Mobile App Development",
-    logo: "/projects/ingattbc/logo.png",
+    logo: "/projects/ingattbc/gambar1.png",
     description: "Aplikasi mobile pendamping untuk pasien Tuberkulosis (TBC). Dibangun menggunakan Flutter dengan fitur andalan berupa sistem Alarm Persisten yang menembus mode Doze Android untuk memastikan jadwal minum obat tidak terlewat, UI/UX notifikasi real-time, serta sistem manajemen perizinan khusus untuk Android 13+.",
     images: [
-      "/projects/ingattbc/1.png",
-      "/projects/ingattbc/2.png",
-      "/projects/ingattbc/3.png",
-      "/projects/ingattbc/4.png"
+      "/projects/ingattbc/gambar1.png",
+      "/projects/ingattbc/gambar2.png",
+      "/projects/ingattbc/gambar3.png",
+      "/projects/ingattbc/gambar4.png"
     ],
     tags: ["Flutter", "Android", "Dart", "REST API"],
     githubUrl: "#",
