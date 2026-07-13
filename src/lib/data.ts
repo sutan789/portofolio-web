@@ -195,6 +195,22 @@ export const PROJECTS = [
     tags: ["Next.js", "React", "Tailwind CSS"],
     githubUrl: "#",
     liveUrl: "https://convertaja.vercel.app/"
+  },
+  {
+    id: 7,
+    title: "IngatTBC (Mobile App)",
+    category: "Mobile App Development",
+    logo: "/projects/ingattbc/logo.png",
+    description: "Aplikasi mobile pendamping untuk pasien Tuberkulosis (TBC). Dibangun menggunakan Flutter dengan fitur andalan berupa sistem Alarm Persisten yang menembus mode Doze Android untuk memastikan jadwal minum obat tidak terlewat, UI/UX notifikasi real-time, serta sistem manajemen perizinan khusus untuk Android 13+.",
+    images: [
+      "/projects/ingattbc/1.png",
+      "/projects/ingattbc/2.png",
+      "/projects/ingattbc/3.png",
+      "/projects/ingattbc/4.png"
+    ],
+    tags: ["Flutter", "Android", "Dart", "REST API"],
+    githubUrl: "#",
+    liveUrl: "https://ingattbc.com/"
   }
 ];
 
